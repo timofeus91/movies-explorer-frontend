@@ -1,5 +1,20 @@
+import React from "react";
+import MoviesCard from "../MoviesCard/MoviesCard";
+
 function MoviesCardList() {
     return (
-      console.log('Просто рыбка')
+      <section className="movies">
+        <ul className="movies__list">
+          <MoviesCard />
+          <MoviesCard />
+          <MoviesCard />
+          <MoviesCard />
+          <MoviesCard />
+          <MoviesCard />
+        </ul>
+        <button className="movies__button" type="button">Ещё</button>
+      </section>
     );
 }
+
+export default MoviesCardList;

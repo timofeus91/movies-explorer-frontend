@@ -1,5 +1,15 @@
+import React from "react";
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import SearchForm from "../SearchForm/SearchForm";
+import './SavedMovies.css';
+
 function SavedMovies() {
     return (
-      console.log('Просто рыбка')
+      <>
+        <SearchForm />
+        <MoviesCardList />
+      </>
     );
 }
+
+export default SavedMovies;

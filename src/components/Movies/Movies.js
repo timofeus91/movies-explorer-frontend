@@ -1,5 +1,14 @@
+import React from "react";
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import SearchForm from "../SearchForm/SearchForm";
+
 function Movies() {
     return (
-      console.log('Просто рыбка')
+      <>
+        <SearchForm />
+        <MoviesCardList />
+      </>
     );
 }
+
+export default Movies;
