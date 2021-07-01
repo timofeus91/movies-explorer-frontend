@@ -9,8 +9,7 @@ import Portfolio from '../Portfolio/Portfolio.js';
 
 function Main() {
     return (
-      <>
-        <Header />
+      
         <Main>
           <Promo />
           <AboutProject />
@@ -18,8 +17,7 @@ function Main() {
           <AboutMe />
           <Portfolio />
         </Main>
-        <Footer />
-      </>
+    
     );
 }
 
