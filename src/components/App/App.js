@@ -16,7 +16,7 @@ function App() {
     <>
   <Switch>
 
-    <Route path="/">
+    <Route path="/" exact>
       <Header />
       <Main />
       <Footer />

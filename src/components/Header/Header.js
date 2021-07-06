@@ -6,7 +6,7 @@ import './Header.css';
 function Header() {
     return (
       <header className="header">
-        <Route exact path="/">
+        <Route path="/" >
         <img className="header__logo" alt="Логотип" src={logo} />
         <div className="header__authorization-container">
           <Link to='/signup' className="header__link header__link_signup">Регистрация</Link>
@@ -14,7 +14,7 @@ function Header() {
         </div>
         </Route>
 
-        <Route path='*'>
+        <Route path="*">
           <div className="header__navigation-container">
             <img className="header__logo" alt="Логотип" src={logo} />
             <Link to='/movies' className="header__link header__link_movies">Фильмы</Link>

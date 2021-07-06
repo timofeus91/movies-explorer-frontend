@@ -3,4 +3,69 @@
     background-color: rgb(245, 245, 245);
     border-radius: 10px;
     max-width: 1200px;
+    padding: 0;
+    margin: 20px auto 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.promo__title {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 50px;
+    line-height: 58px;
+    text-align: center;
+    padding: 0;
+    margin: 160px auto 0;
+    letter-spacing: -0.04em;
+
+}
+
+.promo__nav {
+    padding: 0;
+    margin: 151px auto 30px;
+    
+}
+
+.promo__list{
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto 0;
+}
+
+.promo__item {
+    width: 96px;
+    height: 36px;
+    border-radius: 10px;
+    background-color: rgb(232, 232, 232);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0 10px 0 0;
+    cursor: pointer;
+}
+
+.promo__link {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    
+}
+
+.promo__item:last-child {
+    margin: 0;
+}
+
+.promo__item:hover {
+    opacity: 0.8;
+    transition: opacity 0.5s;
 }
