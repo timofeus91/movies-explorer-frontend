@@ -37,7 +37,6 @@ function App() {
     <Route path="/profile">
       <Header />
       <Profile />
-      <Footer />
     </Route>
 
     <Route path="/signin">

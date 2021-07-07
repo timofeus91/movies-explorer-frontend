@@ -1,5 +1,6 @@
 import React from "react";
 import poster from "../../images/poster-marsianin.jpg";
+import './MoviesCard.css';
 
 function MoviesCard() {
     return (

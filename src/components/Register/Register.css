@@ -1,0 +1,26 @@
+
+.register {
+    max-width: 396px;
+    margin: 70px auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.register__logo {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    margin: 0;
+}
+
+.register__title {
+    padding: 0;
+    margin: 40px 0 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: rgb(0, 0, 0);
+}
