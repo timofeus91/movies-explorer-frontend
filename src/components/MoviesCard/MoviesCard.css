@@ -1,7 +1,9 @@
 
 .movies__item {
     list-style: none;
-    width: 100%;
+    margin: 0;
+    padding: 0;
+    
 }
 
 .movies__poster {
@@ -62,4 +64,39 @@
 .movies__no-like {
     background-image: url('../../images/like-noactive.png');
     
+}
+
+
+@media screen and (max-width:714px) {
+    .movies__item {
+        margin: 0 auto;
+        max-width: 500px;
+    }
+
+    }
+
+
+    @media screen and (max-width:520px) {
+        .movies__item {
+            max-width: 330px;
+        }
+        
+        .movies__poster {
+            height: 168px;
+        }
+
+        .movies__container {
+            margin-top: 15px;
+        }
+
+        .movies__title {
+            font-size: 12px;
+            line-height: 15px;
+        }
+
+        .movies__duration {
+            font-size: 10px;
+            line-height: 12px;
+        }
+
 }

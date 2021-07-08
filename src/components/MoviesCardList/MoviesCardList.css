@@ -75,3 +75,16 @@
 
     
 }
+
+
+@media screen and (max-width:714px) {
+    .movies__list {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    
+
+    
+}

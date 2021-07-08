@@ -97,3 +97,34 @@
     opacity: 0.8;
     transition: opacity 0.5s;
 }
+
+
+@media screen and (max-width:1000px) {
+    .profile__button-edit {
+        margin-top: 210px;
+    }
+}
+
+@media screen and (max-width:760px) {
+    .profile {
+        max-width: 500px;
+    }
+}
+
+@media screen and (max-width:520px) {
+    .profile {
+        max-width: 260px;
+    }
+
+    .profile__button-edit {
+        margin-top: 380px;
+    }
+
+    .profile__button-logout {
+        margin-bottom: 40px;
+    }
+
+    .profile__title {
+        margin-top: 70px;
+    }
+}
