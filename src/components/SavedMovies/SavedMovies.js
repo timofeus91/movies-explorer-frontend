@@ -7,7 +7,8 @@ function SavedMovies() {
     return (
       <>
         <SearchForm />
-        <MoviesCardList />
+        <MoviesCardList
+        routeMovies={false}  />
       </>
     );
 }

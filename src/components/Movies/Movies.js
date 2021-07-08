@@ -6,7 +6,8 @@ function Movies() {
     return (
       <>
         <SearchForm />
-        <MoviesCardList />
+        <MoviesCardList
+        routeMovies={true} />
       </>
     );
 }

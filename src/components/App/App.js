@@ -12,30 +12,40 @@ import PageNotFound from '../PageNotFound/PageNotFound.js';
 import './App.css';
 
 function App() {
+
+  const loggedIn= true;
+
   return (
     <>
   <Switch>
 
     <Route path="/" exact>
-      <Header />
+      <Header
+      loggedIn={loggedIn}
+       />
       <Main />
       <Footer />
     </Route>
 
     <Route path="/movies">
-      <Header />
+      <Header
+      loggedIn={loggedIn}
+      filmRoute={true} />
       <Movies />
       <Footer />
     </Route>
 
     <Route path="/saved-movies">
-      <Header />
+      <Header
+      loggedIn={loggedIn}
+      filmRoute={false} />
       <SavedMovies />
       <Footer />
     </Route>
 
     <Route path="/profile">
-      <Header />
+      <Header
+      loggedIn={loggedIn} />
       <Profile />
     </Route>
 

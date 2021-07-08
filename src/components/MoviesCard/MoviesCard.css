@@ -39,6 +39,10 @@
     background-color: transparent;
 }
 
+.movies__delete {
+    background-image:url('../../images/delete-icon.svg')
+}
+
 .movies__duration {
     margin: 6px 0 0;
     padding: 0;
