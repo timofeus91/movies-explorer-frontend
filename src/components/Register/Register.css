@@ -168,6 +168,15 @@
 
     .register__subtitle {
         margin-top: 14px;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .register__link {
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 15px;
     }
 
 

@@ -7,7 +7,6 @@
 }
 
 .portfolio__title {
-    font-family: Inter;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -17,7 +16,7 @@
 }
 
 .portfolio__list {
-    margin: 0 0 125px;
+    margin: 0;
     padding: 0;
     list-style: none;
 }
@@ -73,4 +72,35 @@
     .portfolio__link {
         font-size: 28px;
     }
+}
+
+@media screen and (max-width:800px) {
+    .portfolio__list-item:first-child {
+        margin-top: 40px;
+    }
+
+    .portfolio__list-item:last-child {
+        border: none;
+    }
+
+    .portfolio {
+        padding: 0 14px;
+        margin: 70px auto;
+    }
+
+    .portfolio__title {
+        font-size: 14px;
+        
+    }
+
+    .portfolio__link {
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    .portfolio__coursor {
+        font-size: 18px;
+        line-height: 28px;
+    }
+
 }

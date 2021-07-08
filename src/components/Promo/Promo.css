@@ -92,3 +92,39 @@
         margin: 315px auto 30px;
     }
 }
+
+
+@media screen and (max-width:760px) {
+    .promo {
+        max-width: 500px;
+    }
+
+    .promo__title {
+        font-weight: normal;
+        font-size: 29px;
+        line-height: 37px;
+        margin-top: 220px;
+    }
+
+    .promo__nav {
+        margin: 212px auto 17px;
+    }
+
+    .promo__item {
+        width: 82px;
+        height: 26px;
+        margin-right: 6px;
+
+    }
+
+    .promo__link {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width:530px) {
+    .promo {
+        max-width: 292px;
+    }
+}
+
