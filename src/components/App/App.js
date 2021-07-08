@@ -13,7 +13,7 @@ import './App.css';
 
 function App() {
 
-  const loggedIn= true;
+  const loggedIn= false;
 
   return (
     <>
@@ -22,6 +22,7 @@ function App() {
     <Route path="/" exact>
       <Header
       loggedIn={loggedIn}
+      filmRoute={true}
        />
       <Main />
       <Footer />
@@ -45,7 +46,8 @@ function App() {
 
     <Route path="/profile">
       <Header
-      loggedIn={loggedIn} />
+      loggedIn={loggedIn}
+      filmRoute={true} />
       <Profile />
     </Route>
 

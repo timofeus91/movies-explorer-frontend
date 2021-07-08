@@ -2,8 +2,7 @@
 .about-project {
     margin: 110px auto;
     padding: 0 70px;
-    width: 100%;
-    max-width: 1280px;
+    max-width: 1140px;
 }
 
 .about-project__title {
@@ -76,4 +75,12 @@
     color: rgb(160, 160, 160);
     font-weight: 500;
     padding: 14px 0 0;
+}
+
+@media screen and (max-width:1100px) {
+    .about-project {
+        padding: 0 50px;
+        margin: 90px auto;
+    } 
+
 }

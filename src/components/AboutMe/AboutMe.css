@@ -2,8 +2,7 @@
 .about-me {
     margin: 110px auto 100px;
     padding: 0 70px;
-    width: 100%;
-    max-width: 1280px;
+    max-width: 1140px;
 }
 
 .about-me__title {
@@ -94,4 +93,34 @@
 
 .about-me__link:first-child {
     margin-right: 20px;
+}
+
+
+@media screen and (max-width:1100px) {
+    .about-me {
+        padding: 0 50px;
+        margin: 90px auto;
+        
+    } 
+
+    .about-me__name {
+        font-size: 40px;
+        line-height: 40px;
+    }
+
+    .about-me__profession {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .about-me__declaration {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .about-me__photo {
+        max-width: 255px;
+        max-height: 307px;
+    }
+
 }

@@ -2,8 +2,7 @@
 .footer {
     margin: 0 auto;
     padding: 80px 70px 20px;
-    width: 100%;
-    max-width: 1280px;
+    max-width: 1140px;
     display: flex;
     flex-direction: column;
 }
@@ -15,6 +14,9 @@
     line-height: 16px;
     text-align: center;
     color: rgb(160, 160, 160);
+    padding: 0 0 20px;
+    margin: 0;
+    border-bottom:  2px solid rgb(232, 232, 232);
 
 }
 
@@ -64,4 +66,17 @@
 .footer_link:hover {
     opacity: 0.8;
     transition: opacity 0.5s;
+}
+
+@media screen and (max-width:1279px) {
+    .footer {
+        max-width: 1100px;
+    }
+}
+
+@media screen and (max-width:1102px) {
+    .footer {
+        max-width: 800px;
+        padding: 80px 30px 20px;
+    }
 }

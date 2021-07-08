@@ -24,6 +24,7 @@
 
 }
 
+
 .promo__nav {
     padding: 0;
     margin: 151px auto 30px;
@@ -68,4 +69,26 @@
 .promo__item:hover {
     opacity: 0.8;
     transition: opacity 0.5s;
+}
+
+@media screen and (max-width:1201px) {
+    .promo {
+        max-width: 1100px;
+    }
+}
+
+@media screen and (max-width:1100px) {
+    .promo {
+        max-width: 728px;
+    }
+
+    .promo__title {
+        font-size: 40px;
+        line-height: 52px;
+        margin-top: 350px;
+    }
+
+    .promo__nav {
+        margin: 315px auto 30px;
+    }
 }

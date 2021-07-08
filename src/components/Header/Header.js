@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import logo from '../../images/logo.svg';
+
 import './Header.css';
 
 function Header({ loggedIn, filmRoute }) {
@@ -9,7 +9,7 @@ function Header({ loggedIn, filmRoute }) {
         {loggedIn ? (
           <>
           <div className="header__navigation-container">
-            <img className="header__logo" alt="Логотип" src={logo} />
+            <Link to='/' className="header__logo"></Link>
             <Link to='/movies' className={`header__link header__link_movies ${filmRoute ? '' : 'header__link_movies-noactive'} `}>Фильмы</Link>
             <Link to='/saved-movies' className={`header__link header__link_saved-movies ${filmRoute ? 'header__link_saved-movies-noactive' : ''}`}>Сохранённые фильмы</Link>
           </div>
@@ -17,7 +17,7 @@ function Header({ loggedIn, filmRoute }) {
           </>
         ) : (
           <>
-        <img className="header__logo" alt="Логотип" src={logo} />
+        <Link to='/' className="header__logo"></Link>
         <div className="header__authorization-container">
           <Link to='/signup' className="header__link header__link_signup">Регистрация</Link>
           <Link to='/signin' className="header__link header__link_signin">Войти</Link>

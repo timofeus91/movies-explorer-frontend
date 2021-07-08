@@ -2,8 +2,7 @@
 .portfolio {
         margin: 100px auto 125px;
         padding: 0 70px;
-        width: 100%;
-        max-width: 1280px;
+        max-width: 1140px;
     
 }
 
@@ -63,4 +62,15 @@
 
 .portfolio__list-item:first-child {
     margin-top: 50px;
+}
+
+@media screen and (max-width:1100px) {
+    .portfolio {
+        padding: 0 50px;
+        margin: 90px auto;
+    }
+
+    .portfolio__link {
+        font-size: 28px;
+    }
 }

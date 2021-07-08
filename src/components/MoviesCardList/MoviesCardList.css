@@ -1,17 +1,19 @@
 
 .movies {
     margin: 0 auto 80px;
-    padding: 70px 0px 0;
+    padding: 70px 0 0;
     max-width: 1140px;
+    border-top:  2px solid rgb(232, 232, 232);
 }
 
 .movies__list {
     padding: 0;
-    margin: 0;
+    margin: 0 auto 0;
     list-style: none;
     display: grid;
     grid-gap: 38px 20px;
     grid-template-columns: repeat(auto-fit, 270px);
+    
 }
 
 .movies__button {
@@ -29,4 +31,47 @@
     font-size: 12px;
     line-height: 15px;
     color: rgb(0, 0, 0);
+}
+
+@media screen and (max-width:1200px) {
+
+    .moveis {
+        margin-bottom: 50px;
+        padding-top: 80px;
+    }
+    .movies__list {
+        max-width: 880px;
+        grid-template-columns: repeat(auto-fit,minmax(270px, 1fr));
+    }
+
+    .movies {
+        max-width: 880px;
+    }
+
+    
+}
+
+@media screen and (max-width:900px) {
+    .movies__list {
+        max-width: 750px;
+    }
+
+    .movies {
+        max-width: 750px;
+    }
+}
+
+
+@media screen and (max-width:769px) {
+    .movies__list {
+        max-width: 708px;
+        grid-gap: 30px 30px;
+        grid-template-columns: repeat(auto-fit, 339px);
+    }
+
+    .movies {
+        max-width: 708px;
+    }
+
+    
 }

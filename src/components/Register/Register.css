@@ -146,3 +146,39 @@
     opacity: 0.8;
     transition: opacity 0.5s;
 }
+
+@media screen and (max-width:500px) {
+    .register {
+        max-width: 320px;
+        justify-content: center;
+        
+    }
+
+    .register__logo-link {
+        margin: 0 auto;
+    }
+
+    .register__title {
+        margin: 50px auto 0;
+    }
+
+    .register__button {
+        margin-top: 172px;
+    }
+
+    .register__subtitle {
+        margin-top: 14px;
+    }
+
+
+}
+
+@media screen and (max-width:330px) {
+    .register {
+        max-width: 260px;
+        
+        
+    }
+
+
+}
