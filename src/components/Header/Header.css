@@ -86,7 +86,7 @@
     transition: opacity 0.5s;
 }
 
-.header__sidebar-button {
+.header__sidebar-open {
     background-image: url('../../images/sidebar-icon.svg');
     width: 44px;
     height: 44px;
@@ -95,6 +95,10 @@
     margin: 0;
     border: none;
     background-color: transparent;
+}
+
+.header__sidebar {
+    display: none;
 }
 
 
@@ -111,7 +115,7 @@
         display: none;
     }
 
-    .header__sidebar-button {
+    .header__sidebar-open {
         display: inline;
     }
 }
