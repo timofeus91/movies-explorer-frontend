@@ -86,6 +86,44 @@
     transition: opacity 0.5s;
 }
 
+.header__sidebar-button {
+    background-image: url('../../images/sidebar-icon.svg');
+    width: 44px;
+    height: 44px;
+    display: none;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+}
+
+
+@media screen and (max-width:810px) {
+    .header__link_profile {
+        display: none;
+    }
+
+    .header__link_saved-movies {
+        display: none;
+    }
+
+    .header__link_movies {
+        display: none;
+    }
+
+    .header__sidebar-button {
+        display: inline;
+    }
+}
+
+
+
+
+
+/**
+ниже находятся стили для кнопок войти и регистрация. Выше сложные стили по сайд-бару
+*/
+
 .header__link_signup {
     text-decoration: none;
     cursor: pointer;
@@ -155,8 +193,14 @@
     }
 }
 
+@media screen and (max-width:720px) {
+    .header {
+        max-width: 500px;
+    }
+}
 
-@media screen and (max-width:500px) {
+
+@media screen and (max-width:520px) {
     .header {
         max-width: 296px;
     }

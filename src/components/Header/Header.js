@@ -14,6 +14,7 @@ function Header({ loggedIn, filmRoute }) {
             <Link to='/saved-movies' className={`header__link header__link_saved-movies ${filmRoute ? 'header__link_saved-movies-noactive' : ''}`}>Сохранённые фильмы</Link>
           </div>
           <Link to='/profile' className="header__link header__link_profile">Аккаунт</Link>
+          <button className="header__sidebar-button" type="button"></button>
           </>
         ) : (
           <>
