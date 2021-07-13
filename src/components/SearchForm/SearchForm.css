@@ -51,7 +51,15 @@
     outline: none;
     background-color: rgb(249, 249, 249);
     cursor: pointer;
+    
 }
+
+.search__input:focus {
+    outline: rgb(43, 224, 128);
+    outline-style: solid;
+}
+
+
 
 .search__submit {
     background-image: url('../../images/submit-icon.svg');

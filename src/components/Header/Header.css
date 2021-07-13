@@ -97,8 +97,115 @@
     background-color: transparent;
 }
 
-.header__sidebar {
+.header__sidebar-open-off {
     display: none;
+}
+
+.header__sidebar {
+    visibility: hidden;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .3);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header__sidebar_open {
+    visibility: visible;
+}
+
+.header__sidebar-container {
+    width: 60%;
+    height:100%;
+    position: relative;
+    z-index: 0;
+    background: rgb(255, 255, 255);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+
+.header__sudebar-close {
+    background-image: url('../../images/sidebar-close-icon.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    background-color: transparent;
+    height: 22px;
+    width: 22px;
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    z-index: 1;
+}
+
+.header__link-main-sidebar {
+    margin: 0 auto;
+    padding: 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+.header__link_movies-sidebar {
+    margin: 28px auto 0;
+    padding: 0 0 4px;
+    border-bottom:  2px solid rgb(0, 0, 0);
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+
+}
+
+.header__link_saved-movies-sidebar {
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    margin: 22px auto 0;
+    padding: 0;
+}
+
+.header__link_profile-sidebar {
+    margin: 0 auto 90px;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    background-color: rgb(249, 249, 249);
+    text-decoration: none;
+
+
+}
+
+.header__sidebar-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 159px auto 0;
 }
 
 
@@ -118,6 +225,22 @@
     .header__sidebar-open {
         display: inline;
     }
+
+    .header__sidebar-open-off {
+        display: none;
+    }
+
+    .header__link_profile-sidebar {
+        margin-bottom: 46px;
+    }
+
+    .header__sidebar-links {
+        margin-top: 144px;
+    }
+
+    .header__sidebar-container {
+        width: 100%;
+    }
 }
 
 
@@ -125,7 +248,7 @@
 
 
 /**
-ниже находятся стили для кнопок войти и регистрация. Выше сложные стили по сайд-бару
+ниже находятся стили для кнопок войти и регистрация. Выше сложные стили по сайд-бару и по кнопкм перехода в фильмы и аккаунт
 */
 
 .header__link_signup {
