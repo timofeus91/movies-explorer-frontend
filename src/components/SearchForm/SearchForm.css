@@ -1,0 +1,243 @@
+
+.search {
+    margin: 0 auto;
+    padding: 70px 0 69px;
+    max-width: 1140px;
+    
+    
+}
+
+.search__flex-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 80% 20%;
+ 
+}
+
+.search__form {
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(249, 249, 249);
+    margin: 0;
+    padding: 0;
+    border-radius: 10px 0 0 10px;
+    
+}
+
+.search__input-container {
+    display: flex;
+    padding: 0;
+    margin: 19px 0;
+}
+
+.search__submit-container {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 19px 0;
+}
+
+.searc__logo {
+    width: 34px;
+    height: 34px;
+}
+
+.search__input {
+    margin: 0 0 0 10px;
+    padding: 0;
+    border: none;
+    outline: none;
+    background-color: rgb(249, 249, 249);
+    cursor: pointer;
+    
+}
+
+.search__input:focus {
+    outline: rgb(43, 224, 128);
+    outline-style: solid;
+}
+
+
+
+.search__submit {
+    background-image: url('../../images/submit-icon.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.search__submit:hover {
+    opacity: 0.8;
+    transition: opacity 0.5s;
+}
+
+.search__design-stick {
+    margin: 0 0 0 30px;
+    padding: 0;
+    height: 40px;
+    width: 1px;
+    background-color:  rgb(232, 232, 232);
+}
+
+.search__subtitle {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 18px;
+    color: rgb(0, 0, 0);
+    padding: 0;
+    margin: 0 0 0 14px;
+}
+
+.search__checkbox-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    background-color: rgb(249, 249, 249);
+    border-radius: 0 10px 10px 0;
+}
+
+
+.search__form-label {
+    width: 36px;
+    height: 20px;
+    position: relative;
+    
+}
+
+.search__form-checkbox {
+    display: none;
+
+}
+
+.search___form-checkbox-span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(235, 235, 235);
+    cursor: pointer;
+    border-radius: 16px;
+
+}
+
+.search___form-checkbox-span:before {
+    position: absolute;
+    height: 13px;
+    width: 13px;
+    left: 4px;
+    bottom: 4px;
+    content: "";
+    background-color: rgb(255, 255, 255);
+    transition: 0.6s;
+    border-radius: 50%;
+    
+}
+
+.search__form-checkbox:checked + .search___form-checkbox-span:before {
+    transform: translateX(16px);
+    
+  }
+
+.search__form-checkbox:checked + .search___form-checkbox-span {
+    background-color: rgb(43, 224, 128);
+    
+  }
+
+ 
+
+  @media screen and (max-width:1160px) {
+    .search {
+        max-width: 900px;
+        padding: 80px 0 109px;
+    }
+
+    .search__flex-container {
+        grid-template-columns: 70% 30%;
+     
+    }
+  }
+
+  @media screen and (max-width:930px) {
+    .search {
+        max-width: 800px;
+    }
+  }
+
+
+@media screen and (max-width:810px) {
+    .search {
+        max-width: 708px;
+        
+    }
+
+    .search__flex-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+    }
+
+    .search__checkbox-container {
+        background-color: rgb(255, 255, 255);
+        margin-top: 46px;
+    }
+
+    .search__form {
+        border-radius: 10px;
+    }
+
+    .search__design-stick {
+        margin: 0;
+        display: none;
+    }
+
+    .search__submit {
+        margin-right: 10px;
+    }
+}
+
+@media screen and (max-width:720px) {
+    .search {
+        max-width: 500px;
+        
+    }
+
+
+
+    
+
+    .searc__logo {
+        display: none;
+    }
+
+    .search__input {
+        margin-left: 19px;
+    }
+
+    .search__submit {
+        margin-right: 19px;
+    }
+
+    
+}
+
+@media screen and (max-width:510px) {
+    .search {
+        max-width: 300px;
+        
+    }
+
+    
+}

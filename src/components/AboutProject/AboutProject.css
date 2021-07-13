@@ -1,0 +1,132 @@
+
+.about-project {
+    margin: 110px auto;
+    padding: 0 70px;
+    max-width: 1140px;
+}
+
+.about-project__title {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 27px;
+    color: rgb(0, 0, 0);
+    margin: 0;
+    padding: 0 0 23px 0;
+    border-bottom:  2px solid rgb(0, 0, 0);
+    letter-spacing: -0.04em;
+}
+
+.about-project__main-text-container {
+    margin: 70px auto 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.about-project__text-container-title {
+    padding: 0;
+    margin: 0;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    color: rgb(0, 0, 0);
+    letter-spacing: -0.04em;
+}
+
+.about-project__text-container-subtitle {
+    margin: 0;
+    padding: 26px 0 0;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(0, 0, 0);
+}
+
+.about-project__grid-container {
+    padding: 0;
+    margin: 110px auto 0;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    
+}
+
+.about-project__grid-text {
+    margin: 0;
+    padding: 9px 0;
+    text-align: center;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: rgb(0, 0, 0);
+}
+
+.about-project__grid-text_green {
+    background-color: rgb(43, 224, 128);
+}
+
+.about-project__grid-text_grey {
+    background-color: rgb(242, 242, 242);
+}
+
+.about-project__grid-text_transparent {
+    color: rgb(160, 160, 160);
+    font-weight: 500;
+    padding: 14px 0 0;
+}
+
+@media screen and (max-width:1100px) {
+    .about-project {
+        padding: 0 50px;
+        margin: 90px auto;
+    } 
+
+}
+
+@media screen and (max-width:760px) {
+    .about-project {
+        padding: 0 18px;
+        margin: 70px auto;
+    } 
+
+    .about-project__main-text-container {
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 60px;
+    }
+
+    .about-project__text-container-title {
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .about-project__text-container-subtitle {
+        font-weight: normal;
+        font-size: 11px;
+        line-height: 16px;
+        padding-top: 16px;
+    }
+
+    .about-project__text-container:last-child {
+        margin-top: 56px;
+    }
+
+    .about-project__grid-text {
+        padding: 11px 0;
+        font-weight: normal;
+        font-size: 11px;
+        line-height: 13px;
+    }
+
+    .about-project__title {
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 22px;
+        padding-bottom: 28px;
+    }
+
+}
+

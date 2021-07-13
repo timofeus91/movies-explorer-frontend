@@ -1,0 +1,135 @@
+
+.footer {
+    margin: 0 auto;
+    padding: 80px 70px 20px;
+    max-width: 1140px;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer__title {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    color: rgb(160, 160, 160);
+    padding: 0 0 20px;
+    margin: 0;
+    border-bottom:  2px solid rgb(232, 232, 232);
+
+}
+
+.footer__container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer__subtitle {
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    color: rgb(0, 0, 0);
+}
+
+.footer__navigation {
+    margin: 0;
+    padding: 0;
+}
+
+.footer__navigation-list {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.footer__navigation-item {
+    padding: 0;
+    margin: 0 20px 0 0;
+}
+
+.footer__navigation-item:last-child {
+    margin: 0;
+}
+
+.footer_link {
+    text-decoration: none;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    color: rgb(0, 0, 0);
+
+}
+
+.footer_link:hover {
+    opacity: 0.8;
+    transition: opacity 0.5s;
+}
+
+@media screen and (max-width:1279px) {
+    .footer {
+        max-width: 1100px;
+    }
+}
+
+@media screen and (max-width:1102px) {
+    .footer {
+        max-width: 800px;
+        padding: 80px 30px 20px;
+    }
+}
+
+
+@media screen and (max-width:550px) {
+    .footer__container {
+        flex-direction: column-reverse;
+    }
+
+    .footer__subtitle {
+        margin: 30px auto 0;
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .footer__navigation-list {
+        flex-direction: column;
+        
+    }
+
+    .footer__navigation-item {
+        margin: 12px 0 0 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .footer__navigation-item:first-child{
+        margin: 0;
+    }
+
+    .footer__navigation-item:last-child{
+        margin-top: 12px;
+    }
+
+    .footer_link{
+        text-align: center;
+        font-size: 12px;
+        line-height: 15px;
+        
+    }
+
+    .footer__navigation {
+        margin-top: 30px;
+    }
+
+    .footer__title {
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+}

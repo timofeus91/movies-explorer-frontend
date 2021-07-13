@@ -1,0 +1,130 @@
+
+.profile {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 410px;
+}
+
+.profile__title {
+    text-align: center;
+    margin: 74px auto 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: rgb(0, 0, 0);
+}
+
+.profile__name-container {
+    width: 100%;
+    margin: 123px auto 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 16px;
+    border-bottom:  2px solid rgb(232, 232, 232);
+
+}
+
+.profile__email-container {
+    width: 100%;
+    margin: 17px auto 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+
+}
+
+.profile__container-title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+    color: rgb(0, 0, 0);
+    margin: 0;
+    padding: 0;
+
+}
+
+.profile__container-subtitle {
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 13px;
+    color: rgb(0, 0, 0);
+}
+
+.profile__button-edit {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    background-color: transparent;
+    padding: 0;
+    margin: 220px auto 0;
+}
+
+.profile__button-logout {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    color: rgb(255, 48, 85);
+    background-color: transparent;
+    padding: 0;
+    margin: 16px auto 70px;
+}
+
+.profile__button-logout:hover {
+    opacity: 0.8;
+    transition: opacity 0.5s;
+}
+
+.profile__button-edit:hover {
+    opacity: 0.8;
+    transition: opacity 0.5s;
+}
+
+
+@media screen and (max-width:1000px) {
+    .profile__button-edit {
+        margin-top: 210px;
+    }
+}
+
+@media screen and (max-width:760px) {
+    .profile {
+        max-width: 500px;
+    }
+}
+
+@media screen and (max-width:550px) {
+    .profile {
+        max-width: 260px;
+    }
+
+    .profile__button-edit {
+        margin-top: 380px;
+    }
+
+    .profile__button-logout {
+        margin-bottom: 40px;
+    }
+
+    .profile__title {
+        margin-top: 70px;
+    }
+}
