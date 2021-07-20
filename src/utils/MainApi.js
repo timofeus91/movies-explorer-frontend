@@ -1,6 +1,6 @@
 //класс для подключения api
 
-class Api {
+class MainApi {
     //конструктор принимает адрес куда обращаться за данными (или куда их отправлять) и настройки.
     constructor(config) {
         this._url = config.url;
@@ -18,13 +18,56 @@ class Api {
         return Promise.reject(`Сервер недоступен. Ошибка: ${res.status}.`);
     }
 
-    // метод по инициализации карточек с сервера
-
-    getInitialCards() {
-       return fetch(`${this._url}cards`, {
-             headers: this._headers, 
-        }).then(this._checkResponse);
+    // метод по созданию пользователя
+    createUser(name, email, password) {
+        return fetch(`${this._url}signup`, {
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify({
+                name,
+                email,
+                password,
+            })
+        })
+        .then(this._checkResponse);
     }
+
+    //метод по авторизации пользователя
+    login(email, password) {
+        return fetch(`${this._url}signin`, {
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify({
+                email,
+                password,
+            })
+        })
+        .then(this._checkResponse);
+    }
+
+    //метод по изменению данных пользователя
+    updateInfo(email, name) {
+        return fetch(`${this._url}users/me`, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                email,
+                name,
+            })
+        })
+        .then(this._checkResponse);
+    }
+
+    //метод по выдаче информации о действующем пользователе
+    getUserMe() {
+        return fetch(`${this._url}users/me`, {
+            method: 'GET',
+            headers: this._headers,
+        })
+        .then(this._checkResponse);
+    }
+
+
 
     //метод по добавлению новой карточки
 
@@ -116,9 +159,9 @@ class Api {
 
 }
 
-//В версии которая задеплоина указывается url https://api.frontend.timofeus91.nomoredomains.icu/ При работе на локальном сервере сменить на http://localhost:3005/
-const api = new Api({
-    url: "https://api.frontend.timofeus91.nomoredomains.icu/", 
+//В версии которая задеплоина указывается url https://api.diplom.timofeus91.nomoredomains.club/ При работе на локальном сервере сменить на http://localhost:3005/
+const mainApi = new MainApi({
+    url: "https://api.diplom.timofeus91.nomoredomains.club/", 
     headers: {
         "content-type": "application/json",
         'authorization': `Bearer ${localStorage.getItem('jwt')}`,
@@ -126,4 +169,4 @@ const api = new Api({
     }
 });
 
-export default api;
+export default mainApi;
