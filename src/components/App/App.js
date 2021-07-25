@@ -24,8 +24,22 @@ function App() {
   //хук по состоянию переменной email
   const [email, setEmail] = React.useState('');
 
-   //хук по состоянию переменной name
-   const [name, setName] = React.useState('');
+  //хук по состоянию переменной name
+  const [name, setName] = React.useState('');
+
+  //хук по состоянию InfoTooltip
+  const [isInfoTooltip, setIsInfoTooltip] = React.useState(false);
+
+  //хук по состоянию прохождения регистрации
+  const [isAuthReqSuccess, setIsAuthReqSuccess] = React.useState(false);
+
+
+  //обработчик для открытия и закрытия InfoTooltip
+  function handleInfoTooltip() {
+    setIsInfoTooltip(!isInfoTooltip);
+  }
+
+  
 
    
 
@@ -38,7 +52,7 @@ function App() {
                 if(res) {
                     setLoggedIn(true);
                     setEmail(res.email);
-                    history.push('/');
+                    history.push('/movies');
                 }
             })
             .catch((err) => {
@@ -50,11 +64,35 @@ function App() {
 
   //обработчик регистрации
   function handleRegister(data) {
-    
+    mainApi.createUser(data)
+            .then(() => {
+                
+                setIsAuthReqSuccess(true);
+                history.push('/movies');
+            })
+            .catch((err) => {
+                console.log(`Произошла ошибка - ${err}`);
+                setIsAuthReqSuccess(false);
+            })
+            .finally(() => {
+                handleInfoTooltip();
+            })
   }
 
   //обработчик авторизации
   function handleLogin(data) {
+    mainApi.login(data)
+            .then(res => {
+                localStorage.setItem('jwt', res.token);
+                setEmail(data.email);
+                setLoggedIn(true);
+                history.push('/');
+            })
+            .catch((err) => {
+                console.log(`Произошла ошибка - ${err}`);
+                handleInfoTooltip();
+                setIsAuthReqSuccess(false);
+            })
     
   }
 
@@ -110,9 +148,13 @@ function App() {
 
   </Switch>
 
-  <InfoTooltip />
+  <InfoTooltip
+  onClose={handleInfoTooltip}
+  isOpen={isInfoTooltip}
+  isAuthReqSuccess={isAuthReqSuccess} />
   </>
   );
+
 }
 
 export default App;

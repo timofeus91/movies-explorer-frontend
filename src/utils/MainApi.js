@@ -19,27 +19,27 @@ class MainApi {
     }
 
     // метод по созданию пользователя
-    createUser(name, email, password) {
+    createUser(data) {
         return fetch(`${this._url}signup`, {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
-                name,
-                email,
-                password,
+                name: data.name,
+                email: data.email, 
+                password: data.password
             }),
         })
         .then(this._checkResponse);
     }
 
     //метод по авторизации пользователя
-    login(email, password) {
+    login(data) {
         return fetch(`${this._url}signin`, {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
-                email,
-                password,
+                email: data.email, 
+                password: data.password
             }),
         })
         .then(this._checkResponse);
