@@ -1,8 +1,13 @@
 import React from "react";
 import './Profile.css';
+import Header from "../Header/Header";
 
-function Profile() {
+function Profile({loggedIn}) {
     return (
+      <>
+      <Header
+      loggedIn={loggedIn}
+      filmRoute={true} />
       <section className="profile">
         <h3 className="profile__title">Привет, Тимофей!</h3>
         <div className="profile__name-container">
@@ -16,6 +21,7 @@ function Profile() {
         <button className="profile__button-edit" type="button">Редактировать</button>
         <button className="profile__button-logout" type="button">Выйти из аккаунта</button>
       </section>
+      </>
     );
 }
 

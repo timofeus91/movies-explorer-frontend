@@ -13,6 +13,7 @@ import './App.css';
 import mainApi from '../../utils/MainApi';
 import moviesApi from '../../utils/MoviesApi';
 import InfoTooltip from '../InfoTooltip/InfoTooltip.js';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute.js';
 
 function App() {
   
@@ -101,7 +102,7 @@ function App() {
     <>
   <Switch>
 
-    <Route path="/" exact>
+    <Route exact path="/">
       <Header
       loggedIn={loggedIn}
       filmRoute={true}
@@ -110,28 +111,23 @@ function App() {
       <Footer />
     </Route>
 
-    <Route path="/movies">
-      <Header
+    <ProtectedRoute
+      path="/movies"
       loggedIn={loggedIn}
-      filmRoute={true} />
-      <Movies />
-      <Footer />
-    </Route>
+      component={Movies}
+    />
 
-    <Route path="/saved-movies">
-      <Header
+    <ProtectedRoute
+      path="/saved-movies"
       loggedIn={loggedIn}
-      filmRoute={false} />
-      <SavedMovies />
-      <Footer />
-    </Route>
+      component={SavedMovies}
+    />
 
-    <Route path="/profile">
-      <Header
+    <ProtectedRoute
+      path="/profile"
       loggedIn={loggedIn}
-      filmRoute={true} />
-      <Profile />
-    </Route>
+      component={Profile}
+    />
 
     <Route path="/signin">
       <Login onLogin={handleLogin} />
