@@ -66,9 +66,8 @@ function App() {
   function handleRegister(data) {
     mainApi.createUser(data)
             .then(() => {
-                
                 setIsAuthReqSuccess(true);
-                history.push('/movies');
+                handleLogin(data);
             })
             .catch((err) => {
                 console.log(`Произошла ошибка - ${err}`);
@@ -86,7 +85,7 @@ function App() {
                 localStorage.setItem('jwt', res.token);
                 setEmail(data.email);
                 setLoggedIn(true);
-                history.push('/');
+                history.push('/movies');
             })
             .catch((err) => {
                 console.log(`Произошла ошибка - ${err}`);
