@@ -12,6 +12,7 @@ import PageNotFound from '../PageNotFound/PageNotFound.js';
 import './App.css';
 import mainApi from '../../utils/MainApi';
 import moviesApi from '../../utils/MoviesApi';
+import InfoTooltip from '../InfoTooltip/InfoTooltip.js';
 
 function App() {
   
@@ -25,6 +26,8 @@ function App() {
 
    //хук по состоянию переменной name
    const [name, setName] = React.useState('');
+
+   
 
    //эффект по проверке токена
    React.useEffect(() => { 
@@ -43,7 +46,19 @@ function App() {
             })
     }
 
-}, []);
+  }, []);
+
+  //обработчик регистрации
+  function handleRegister(data) {
+    
+  }
+
+  //обработчик авторизации
+  function handleLogin(data) {
+    
+  }
+
+
 
   return (
     <>
@@ -82,11 +97,11 @@ function App() {
     </Route>
 
     <Route path="/signin">
-      <Login />
+      <Login onLogin={handleLogin} />
     </Route>
 
     <Route path="/signup">
-      <Register />
+      <Register onRegister={handleRegister} />
     </Route>
 
     <Route path="*">
@@ -94,6 +109,8 @@ function App() {
     </Route>
 
   </Switch>
+
+  <InfoTooltip />
   </>
   );
 }
