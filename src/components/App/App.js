@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import Header from '../Header/Header.js';
 import Main from '../Main/Main.js';
 import Footer from '../Footer/Footer.js';
@@ -10,10 +10,40 @@ import Login from '../Login/Login.js';
 import Register from '../Register/Register.js';
 import PageNotFound from '../PageNotFound/PageNotFound.js';
 import './App.css';
+import mainApi from '../../utils/MainApi';
+import moviesApi from '../../utils/MoviesApi';
 
 function App() {
+  
+  const history = useHistory();
+  
+  //хук по состоянию авторизации
+  const [loggedIn, setLoggedIn] = React.useState(false);
 
-  const loggedIn= true;
+  //хук по состоянию переменной email
+  const [email, setEmail] = React.useState('');
+
+   //хук по состоянию переменной name
+   const [name, setName] = React.useState('');
+
+   //эффект по проверке токена
+   React.useEffect(() => { 
+    const token = localStorage.getItem('jwt');
+    if(token) {
+      mainApi.checkToken(token)
+            .then(res => {
+                if(res) {
+                    setLoggedIn(true);
+                    setEmail(res.email);
+                    history.push('/');
+                }
+            })
+            .catch((err) => {
+                console.log(`Произошла ошибка - ${err}`);
+            })
+    }
+
+}, []);
 
   return (
     <>
