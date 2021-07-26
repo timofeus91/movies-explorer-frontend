@@ -14,6 +14,7 @@ import mainApi from '../../utils/MainApi';
 import moviesApi from '../../utils/MoviesApi';
 import InfoTooltip from '../InfoTooltip/InfoTooltip.js';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute.js';
+import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 
 function App() {
   
@@ -22,18 +23,14 @@ function App() {
   //хук по состоянию авторизации
   const [loggedIn, setLoggedIn] = React.useState(false);
 
-  //хук по состоянию переменной email
-  const [email, setEmail] = React.useState('');
-
-  //хук по состоянию переменной name
-  const [name, setName] = React.useState('');
-
   //хук по состоянию InfoTooltip
   const [isInfoTooltip, setIsInfoTooltip] = React.useState(false);
 
   //хук по состоянию прохождения регистрации
   const [isAuthReqSuccess, setIsAuthReqSuccess] = React.useState(false);
 
+  //контекст
+  const [currentUser, setCurrentUser] = React.useState({});
 
   //обработчик для открытия и закрытия InfoTooltip
   function handleInfoTooltip() {
@@ -46,20 +43,17 @@ function App() {
 
    //эффект по проверке токена
    React.useEffect(() => { 
-    const token = localStorage.getItem('jwt');
-    if(token) {
-      mainApi.checkToken(token)
+      mainApi.checkToken()
             .then(res => {
                 if(res) {
                     setLoggedIn(true);
-                    setEmail(res.email);
                     history.push('/movies');
                 }
             })
             .catch((err) => {
                 console.log(`Произошла ошибка - ${err}`);
             })
-    }
+    
 
   }, []);
 
@@ -84,7 +78,6 @@ function App() {
     mainApi.login(data)
             .then(res => {
                 localStorage.setItem('jwt', res.token);
-                setEmail(data.email);
                 setLoggedIn(true);
                 history.push('/movies');
             })
@@ -96,10 +89,30 @@ function App() {
     
   }
 
+  //обработчик по выходу из аккаунта
+  function handleLogOut() {
+    setLoggedIn(false);
+    localStorage.removeItem('jwt');
+    history.push('/');
+    }
+
+  //эффект для получения информации о пользователе
+  React.useEffect(() => {
+    if(loggedIn) {
+      mainApi.getUserMe()
+        .then(userInfo => {
+          setCurrentUser(userInfo);
+        })
+        .catch((err) => {
+          console.log(`Произошла ошибка - ${err}`);
+        })
+    }
+  }, [loggedIn]);
 
 
   return (
-    <>
+  <CurrentUserContext.Provider value={ currentUser }>
+    
   <Switch>
 
     <Route exact path="/">
@@ -127,6 +140,7 @@ function App() {
       path="/profile"
       loggedIn={loggedIn}
       component={Profile}
+      logOut={handleLogOut}
     />
 
     <Route path="/signin">
@@ -147,7 +161,8 @@ function App() {
   onClose={handleInfoTooltip}
   isOpen={isInfoTooltip}
   isAuthReqSuccess={isAuthReqSuccess} />
-  </>
+
+  </CurrentUserContext.Provider>
   );
 
 }

@@ -68,13 +68,10 @@ class MainApi {
     }
 
     //метод по проверке токена
-    checkToken(jwt)  {
+    checkToken()  {
         return fetch(`${this._url}users/me`, {
           method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'authorization': `Bearer ${jwt}`,
-          },
+          headers: this._headers,
         })
         .then(this._checkResponse);
       }

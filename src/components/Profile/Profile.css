@@ -98,6 +98,38 @@
     transition: opacity 0.5s;
 }
 
+.profile__input {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0 0 0 2px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 13px;
+    color: rgb(0, 0, 0);
+}
+
+.profile__input_error {
+    color: rgb(255, 48, 85);
+}
+
+.profile__error-label {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    color: rgb(255, 48, 85);
+    padding: 0;
+    margin: 10px 0 0;
+    display: none;
+}
+
+.profile__error-label_active {
+    display: inline;
+}
+
 
 @media screen and (max-width:1000px) {
     .profile__button-edit {
