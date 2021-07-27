@@ -80,6 +80,7 @@ function App() {
                 localStorage.setItem('jwt', res.token);
                 setLoggedIn(true);
                 history.push('/movies');
+  
             })
             .catch((err) => {
                 console.log(`Произошла ошибка - ${err}`);

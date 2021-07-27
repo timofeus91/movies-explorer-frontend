@@ -37,7 +37,7 @@
 
 }
 
-.profile__container-title {
+.profile__label {
     font-style: normal;
     font-weight: 500;
     font-size: 11px;
@@ -73,6 +73,11 @@
     margin: 220px auto 0;
 }
 
+.profile__button-edit_disabled {
+    cursor: default;
+    opacity: 0.7;
+}
+
 .profile__button-logout {
     width: 100%;
     border: none;
@@ -103,12 +108,18 @@
     outline: none;
     cursor: pointer;
     margin: 0;
-    padding: 0 0 0 2px;
+    padding: 0;
     font-style: normal;
     font-weight: normal;
     font-size: 11px;
     line-height: 13px;
     color: rgb(0, 0, 0);
+    text-align: right;
+}
+
+.profile__input:active {
+    border: none;
+    outline: none;
 }
 
 .profile__input_error {
@@ -122,7 +133,7 @@
     line-height: 12px;
     color: rgb(255, 48, 85);
     padding: 0;
-    margin: 10px 0 0;
+    margin: 0;
     display: none;
 }
 
