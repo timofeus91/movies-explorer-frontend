@@ -38,12 +38,13 @@ function App() {
   }
 
   
-
    
 
    //эффект по проверке токена
-   React.useEffect(() => { 
-      mainApi.checkToken()
+   React.useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      mainApi.checkToken(token)
             .then(res => {
                 if(res) {
                     setLoggedIn(true);
@@ -53,8 +54,7 @@ function App() {
             .catch((err) => {
                 console.log(`Произошла ошибка - ${err}`);
             })
-    
-
+    }
   }, []);
 
   //обработчик регистрации
