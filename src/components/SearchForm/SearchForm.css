@@ -28,6 +28,7 @@
 
 .search__input-container {
     display: flex;
+
     padding: 0;
     margin: 19px 0;
 }
@@ -39,7 +40,7 @@
     margin: 19px 0;
 }
 
-.searc__logo {
+.search__logo {
     width: 34px;
     height: 34px;
 }
@@ -155,6 +156,24 @@
     
   }
 
+
+  .search__error-label {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: rgb(255, 48, 85);
+    padding: 0;
+    margin: 0 0 0 12px;
+    display: none;
+    text-align: center;
+    align-self: center;
+}
+
+.search__error-label_active {
+    display: inline;
+}
+
  
 
   @media screen and (max-width:1160px) {
@@ -218,7 +237,7 @@
 
     
 
-    .searc__logo {
+    .search__logo {
         display: none;
     }
 
