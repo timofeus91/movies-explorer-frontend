@@ -6,22 +6,24 @@ function MoviesCardList({routeMovies}) {
     return (
       <section className="movies">
         <ul className="movies__list">
-          <MoviesCard
-          routeMovies={routeMovies} />
-          <MoviesCard
-          routeMovies={routeMovies} />
-          <MoviesCard
-          routeMovies={routeMovies} />
-          <MoviesCard
-          routeMovies={routeMovies} />
-          <MoviesCard
-          routeMovies={routeMovies} />
-          <MoviesCard
-          routeMovies={routeMovies} />
+          
         </ul>
         <button className="movies__button" type="button">Ещё</button>
       </section>
     );
 }
-
+/*
+<MoviesCard
+          routeMovies={routeMovies} />
+          <MoviesCard
+          routeMovies={routeMovies} />
+          <MoviesCard
+          routeMovies={routeMovies} />
+          <MoviesCard
+          routeMovies={routeMovies} />
+          <MoviesCard
+          routeMovies={routeMovies} />
+          <MoviesCard
+          routeMovies={routeMovies} />
+*/
 export default MoviesCardList;

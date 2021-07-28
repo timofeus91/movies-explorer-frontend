@@ -46,13 +46,13 @@ class MainApi {
     }
 
     //метод по изменению данных пользователя
-    updateInfo(email, name) {
+    updateInfo(data) {
         return fetch(`${this._url}users/me`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                email,
-                name,
+                email: data.email,
+                name: data.name,
             }),
         })
         .then(this._checkResponse);

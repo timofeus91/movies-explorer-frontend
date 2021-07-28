@@ -22,7 +22,7 @@ function Profile({loggedIn, logOut, onChangeProfile}) {
 
   React.useEffect(() => {
     setValues(currentUser);
-  }, [])
+  }, [currentUser])
 
 
     return (

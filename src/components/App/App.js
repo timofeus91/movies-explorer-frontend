@@ -110,6 +110,18 @@ function App() {
     }
   }, [loggedIn]);
 
+  //обработчик для обновления информации о пользователе
+  function handleUpdateUser(data) {
+      mainApi.updateInfo(data)
+          .then(data => {
+            setCurrentUser(data)
+            history.push('/movies');
+          })
+          .catch((err) => {
+            console.log(`Произошла ошибка - ${err}`);
+          })
+  }
+
 
   return (
   <CurrentUserContext.Provider value={ currentUser }>
@@ -142,6 +154,7 @@ function App() {
       loggedIn={loggedIn}
       component={Profile}
       logOut={handleLogOut}
+      onChangeProfile={handleUpdateUser}
     />
 
     <Route path="/signin">
