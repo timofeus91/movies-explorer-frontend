@@ -11,7 +11,7 @@ class MoviesApi {
     //публичный метод по получению данных фильмов 
 
     getMovies() {
-        return fetch(`${this._baseUrl}`, {
+        return fetch(`${this._url}`, {
             method: 'GET',
             headers: this._headers 
         }).then(this._checkResponse)
@@ -32,7 +32,7 @@ class MoviesApi {
 
 //В версии которая задеплоина указывается url  https://api.nomoreparties.co/beatfilm-movies/ При работе на локальном сервере сменить на http://localhost:3005/
 const moviesApi = new MoviesApi({
-    url: " https://api.nomoreparties.co/beatfilm-movies/", 
+    url: "https://api.nomoreparties.co/beatfilm-movies/", 
     headers: {
         "content-type": "application/json"
         

@@ -122,6 +122,27 @@ function App() {
           })
   }
 
+  //эффект по загрузке всех фильмов и сохранении их в локальное хранилище
+  React.useEffect(() => {
+      moviesApi.getMovies()
+        .then(movies => {
+          localStorage.setItem('movies', JSON.stringify(movies));
+          const allMovies = JSON.parse(localStorage.getItem('movies'));
+          console.log(allMovies);
+      
+        })
+        .catch((err) => console.log(err));
+    }, []);
+    
+
+    //обработчик для поиска фильма среди загруженных фильмов в локальном хранилище
+    function handleSearchFilm() {
+      console.log('пока просто клик');
+    }
+
+
+
+
 
   return (
   <CurrentUserContext.Provider value={ currentUser }>
@@ -141,6 +162,7 @@ function App() {
       path="/movies"
       loggedIn={loggedIn}
       component={Movies}
+      onQuery = {handleSearchFilm}
     />
 
     <ProtectedRoute

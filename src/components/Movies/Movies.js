@@ -4,14 +4,15 @@ import Footer from "../Footer/Footer";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
 
-function Movies({loggedIn}) {
+function Movies({loggedIn, onQuery}) {
     return (
       <>
         <Header
         loggedIn={loggedIn}
         filmRoute={true}
         />
-        <SearchForm />
+        <SearchForm
+        onQuery={onQuery} />
         <MoviesCardList
         routeMovies={true} />
         <Footer />
