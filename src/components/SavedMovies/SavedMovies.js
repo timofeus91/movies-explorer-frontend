@@ -15,7 +15,7 @@ function SavedMovies({loggedIn, onQuery}) {
         <SearchForm 
         onQuery={onQuery} />
         <MoviesCardList
-        routeMovies={false}  />
+          />
         <Footer />
       </>
     );

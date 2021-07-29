@@ -14,7 +14,7 @@ function Movies({loggedIn, onQuery}) {
         <SearchForm
         onQuery={onQuery} />
         <MoviesCardList
-        routeMovies={true} />
+         />
         <Footer />
       </>
     );
