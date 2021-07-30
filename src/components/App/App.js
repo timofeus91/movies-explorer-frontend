@@ -30,7 +30,7 @@ function App() {
   const [isAuthReqSuccess, setIsAuthReqSuccess] = React.useState(false);
 
   //хук по сохранению всех фильмов в локальное хранилище
-  const [localAllMovies, setLocalAllMovies] = React.useState([]);
+  /*const [localAllMovies, setLocalAllMovies] = React.useState([]); */
 
   //контекст
   const [currentUser, setCurrentUser] = React.useState({});
@@ -124,7 +124,7 @@ function App() {
             console.log(`Произошла ошибка - ${err}`);
           })
   }
-
+/*
   //эффект по загрузке всех фильмов и сохранении их в локальное хранилище
   React.useEffect(() => {
       moviesApi.getMovies()
@@ -140,10 +140,15 @@ function App() {
         .catch((err) => console.log(err));
     }, []);
     
-
+*/
     //обработчик для поиска фильма среди загруженных фильмов в локальном хранилище
     function handleSearchFilm() {
       console.log('пока просто клик');
+    }
+
+    //обработчик для поиска фильма среди сохраненных фильмов 
+    function handleSearchSavedFilm() {
+      
     }
 
 
@@ -174,7 +179,7 @@ function App() {
     <ProtectedRoute
       path="/saved-movies"
       loggedIn={loggedIn}
-      component={SavedMovies}
+      component={handleSearchSavedFilm}
     />
 
     <ProtectedRoute
