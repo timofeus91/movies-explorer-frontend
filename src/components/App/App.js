@@ -29,6 +29,9 @@ function App() {
   //хук по состоянию прохождения регистрации
   const [isAuthReqSuccess, setIsAuthReqSuccess] = React.useState(false);
 
+  //хук по сохранению всех фильмов в локальное хранилище
+  const [localAllMovies, setLocalAllMovies] = React.useState([]);
+
   //контекст
   const [currentUser, setCurrentUser] = React.useState({});
 
@@ -129,8 +132,11 @@ function App() {
           localStorage.setItem('movies', JSON.stringify(movies));
           const allMovies = JSON.parse(localStorage.getItem('movies'));
           console.log(allMovies);
-      
+          setLocalAllMovies(allMovies);
         })
+        .then(() => {
+          console.log(localAllMovies);
+        }) 
         .catch((err) => console.log(err));
     }, []);
     
