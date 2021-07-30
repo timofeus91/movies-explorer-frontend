@@ -5,7 +5,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
 import './SavedMovies.css';
 
-function SavedMovies({loggedIn, onQuery}) {
+function SavedMovies({loggedIn, onQuery, shortFilm}) {
     return (
       <>
         <Header
@@ -13,7 +13,8 @@ function SavedMovies({loggedIn, onQuery}) {
           filmRoute={false} 
         />
         <SearchForm 
-        onQuery={onQuery} />
+        onQuery={onQuery}
+        shortFilm={shortFilm} />
         <MoviesCardList
           />
         <Footer />

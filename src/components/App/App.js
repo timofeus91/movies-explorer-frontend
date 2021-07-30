@@ -32,6 +32,9 @@ function App() {
   //хук по сохранению всех фильмов в локальное хранилище
   /*const [localAllMovies, setLocalAllMovies] = React.useState([]); */
 
+  //хук по состоянию чекбокса короткометражного фильма
+  const [isShortFilm, setIsShortFilm] = React.useState(false);
+
   //контекст
   const [currentUser, setCurrentUser] = React.useState({});
 
@@ -40,6 +43,10 @@ function App() {
     setIsInfoTooltip(!isInfoTooltip);
   }
 
+  React.useEffect(() => {
+    console.log(isShortFilm);
+  }, []
+  );
   
    
 
@@ -148,7 +155,19 @@ function App() {
 
     //обработчик для поиска фильма среди сохраненных фильмов 
     function handleSearchSavedFilm() {
+      console.log('пока просто клик');
+    }
+    
+    //обработчик для изменения значения короткометражный фильм или нет
+    function handleShortFilm() {
+      if(isShortFilm === false)
+      {
+        setIsShortFilm(true);
+      } else {
+        setIsShortFilm(false);
+      }
       
+      console.log(isShortFilm);
     }
 
 
@@ -174,12 +193,14 @@ function App() {
       loggedIn={loggedIn}
       component={Movies}
       onQuery = {handleSearchFilm}
+      shortFilm={handleShortFilm}
     />
 
     <ProtectedRoute
       path="/saved-movies"
       loggedIn={loggedIn}
       component={handleSearchSavedFilm}
+      shortFilm={handleShortFilm}
     />
 
     <ProtectedRoute

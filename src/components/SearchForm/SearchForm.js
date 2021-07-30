@@ -4,7 +4,7 @@ import './SearchForm.css';
 import { Validation } from '../../utils/Validation';
 import SearchCheckbox from "../SearchCheckbox/SearchCheckbox";
 
-function SearchForm({ onQuery }) {
+function SearchForm({ onQuery, shortFilm }) {
 
   //вытаскиваем все из Validation
   const { values, errors, isValid, handleChange } = Validation();
@@ -32,6 +32,7 @@ function SearchForm({ onQuery }) {
           </div>
         </form>
             <SearchCheckbox
+            shortFilm = {shortFilm}
             />
         </div>
       </section>
