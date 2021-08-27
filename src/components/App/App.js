@@ -148,9 +148,15 @@ function App() {
     }, []);
     
 */
-    //обработчик для поиска фильма среди загруженных фильмов в локальном хранилище
-    function handleSearchFilm() {
+
+    //базовая функция по фильтрации фильмов и их поиску по значения из input
+    function searchAnyFilm(data, query) {
+
+    }
+    //обработчик для поиска фильмов
+    function handleSearchFilm(data) {
       console.log('пока просто клик');
+      console.log(`А вот это данные: ${data}`);
     }
 
     //обработчик для поиска фильма среди сохраненных фильмов 
@@ -160,13 +166,7 @@ function App() {
     
     //обработчик для изменения значения короткометражный фильм или нет
     function handleShortFilm() {
-      if(isShortFilm === false)
-      {
-        setIsShortFilm(true);
-      } else {
-        setIsShortFilm(false);
-      }
-      
+      setIsShortFilm(!isShortFilm);
       console.log(isShortFilm);
     }
 

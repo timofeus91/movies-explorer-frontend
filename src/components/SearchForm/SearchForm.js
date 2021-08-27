@@ -14,7 +14,7 @@ function SearchForm({ onQuery, shortFilm }) {
     // Запрещаем браузеру переходить по адресу формы
     e.preventDefault();
     // Передаём значения управляемых компонентов во внешний обработчик
-    onQuery(values);
+    onQuery(values.query);
   }
 
     return (

@@ -125,7 +125,7 @@ class MainApi {
 
 //В версии которая задеплоина указывается url https://api.diplom.timofeus91.nomoredomains.club/ При работе на локальном сервере сменить на http://localhost:3005/
 const mainApi = new MainApi({
-    url: "https://api.diplom.timofeus91.nomoredomains.club/", 
+    url: "http://localhost:3005/", 
     headers: {
         "content-type": "application/json",
         'authorization': `Bearer ${localStorage.getItem('jwt')}`,
