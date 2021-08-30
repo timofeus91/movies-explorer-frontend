@@ -29,6 +29,9 @@ function App() {
   //хук по состоянию прохождения регистрации
   const [isAuthReqSuccess, setIsAuthReqSuccess] = React.useState(false);
 
+  //хук для хранения отфильтрованных результатов поиска во всех фильмах
+  const [resultSearchFilm, setResultSearchFilm] = React.useState([]);
+
   //хук по сохранению всех фильмов в локальное хранилище
   /*const [localAllMovies, setLocalAllMovies] = React.useState([]); */
 

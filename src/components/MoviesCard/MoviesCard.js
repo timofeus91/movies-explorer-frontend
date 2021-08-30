@@ -1,7 +1,7 @@
 import React from "react";
 import './MoviesCard.css';
 
-function MoviesCard({  movie,  }) {
+function MoviesCard({  movie, handleDelete, handleLikeMovie }) {
 
   //делаем единый объект из констант фильма
   const { nameRU, duration, trailerLink, image } = movie;
@@ -18,20 +18,12 @@ function MoviesCard({  movie,  }) {
   const routeWay = React.useLocation().pathname;
 
   //проверяем ставить ли иконку на удаление 
-  const iconDelete = (routeWay === '/movies' ? '' : 'movies__delete');
+  const iconDelete = (routeWay === '/movies' ? '' : 'movies__like_delete');
 
-  //проверяем какую функцию ставить на кнопку по роуту
+  //проверяем какую функцию ставить на кнопку по роуту и потом передаем их в родительский компонент
   const deleteOrLikeMovie = (routeWay === '/movies' ? handleLikeMovie : handleDelete);
 
-  //функция по удалению карточки
-  function handleDelete() {
-    
-  }
 
-  //функция по сохранению-лайку карточке
-  function handleLikeMovie() {
-    
-  }
 
 
 
