@@ -9,7 +9,7 @@ function MoviesCardList({moviesCards}) {
         { moviesCards.map(item => (
                             <MoviesCard
                             movie={item}
-                            key={item.movieId}
+                            key={item.id}
                             
                             
                             

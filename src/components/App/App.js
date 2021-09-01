@@ -32,11 +32,14 @@ function App() {
   //хук для хранения отфильтрованных результатов поиска во всех фильмах
   const [resultSearchFilm, setResultSearchFilm] = React.useState([]);
 
-  //хук по сохранению всех фильмов из поиска при загрузке страницы
-  const [localAllMovies, setLocalAllMovies] = React.useState([]); 
+
+  //хук для хранения всех сохраненных фильмов
+  const [localMovies, setLocalMovies] = React.useState([]); 
 
   //хук по состоянию чекбокса короткометражного фильма
   const [isShortFilm, setIsShortFilm] = React.useState(false);
+
+  
 
   //контекст
   const [currentUser, setCurrentUser] = React.useState({});
@@ -62,6 +65,7 @@ function App() {
                 if(res) {
                     setLoggedIn(true);
                     allMoviesSave();
+                    getLocalMovies();
                     history.push('/movies');
                 }
             })
@@ -94,6 +98,7 @@ function App() {
                 localStorage.setItem('jwt', res.token);
                 setLoggedIn(true);
                 allMoviesSave();
+                getLocalMovies();
                 history.push('/movies');
   
             })
@@ -109,6 +114,8 @@ function App() {
   function handleLogOut() {
     setLoggedIn(false);
     localStorage.removeItem('jwt');
+    localStorage.removeItem('movies');
+    localStorage.removeItem('saved-movies');
     history.push('/');
     }
 
@@ -136,33 +143,43 @@ function App() {
             console.log(`Произошла ошибка - ${err}`);
           })
   }
-/*
-  //эффект по загрузке всех фильмов и сохранении их в локальное хранилище
-  React.useEffect(() => {
-      moviesApi.getMovies()
+
+  //функция для загрузки всех сохраненных фильмов пользователя и добавления их в стейт-переменную и локальное хранилище
+  function getLocalMovies() {
+    mainApi.getMovies()
         .then(movies => {
-          localStorage.setItem('movies', JSON.stringify(movies));
-          const allMovies = JSON.parse(localStorage.getItem('movies'));
-          console.log(allMovies);
-          setLocalAllMovies(allMovies);
+          localStorage.setItem('saved-movies', JSON.stringify(movies));
+          setLocalMovies(movies);
         })
+        .catch((err) => {
+          console.log(`Произошла ошибка - ${err}`);
+        })
+  }
+
+
+  //обработчик для добавления фильма
+  function handleAddMovie(movie) {
+
+  }
+
+
+  //обработчик для удаления фильма
+  function handleDeleteMovie(movieId) {
+    mainApi.deleteMovie(movieId)
         .then(() => {
-          console.log(localAllMovies);
-        }) 
-        .catch((err) => console.log(err));
-    }, []);
-    
-*/
+        //фильм удалили по айди, а нужно ли что-нибудь здесь делать еще?Может получать обновленный список сохраненных фильмов? Подумать!!!
+        })
+        .catch((err) => {
+          console.log(`Произошла ошибка - ${err}`);
+        })
+
+  }
 
     //функция для записи всех фильмов со стороннего апи в хук состояния и локальное хранилище. Используется при проверке токена и при авторизации
     function allMoviesSave() {
       moviesApi.getMovies()
         .then(movies => {
-          console.log('Ниже у нас должен быть массив объектов');
-          console.log(movies);
           localStorage.setItem('movies', JSON.stringify(movies));
-          setLocalAllMovies(movies);
-          console.log(localAllMovies);
 
         })
         
@@ -172,13 +189,9 @@ function App() {
   
     //обработчик для поиска фильмов
     function handleSearchFilm(data) {
-      console.log('пока просто клик');
-      console.log(`А вот это данные: ${data}`);
       const allMovies = JSON.parse(localStorage.getItem('movies'));
-      console.log('Ниже будет то что сохранено в локальном хранилище под названием movies');
-      console.log(allMovies);
-      console.log(typeof(data));
-      setResultSearchFilm(!data ? [] : allMovies.filter(item => (item.nameRU.toLowerCase().includes(data.toLowerCase()) || item.nameEN.toLowerCase().includes(data.toLowerCase()))))
+      
+      setResultSearchFilm(allMovies.filter(item => ((item.nameRU != null && item.nameRU.toLowerCase().includes(data.toLowerCase())) || (item.nameEN != null && item.nameEN.toLowerCase().includes(data.toLowerCase())))));
 
 
     }
