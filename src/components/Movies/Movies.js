@@ -4,7 +4,7 @@ import Footer from "../Footer/Footer";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
 
-function Movies({loggedIn, onQuery, shortFilm}) {
+function Movies({loggedIn, onQuery, shortFilm, moviesCards}) {
     return (
       <>
         <Header
@@ -15,7 +15,7 @@ function Movies({loggedIn, onQuery, shortFilm}) {
         onQuery={onQuery}
         shortFilm ={shortFilm} />
         <MoviesCardList
-         />
+         moviesCards={moviesCards}/>
         <Footer />
       </>
     );

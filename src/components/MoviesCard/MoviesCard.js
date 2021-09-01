@@ -1,10 +1,16 @@
 import React from "react";
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './MoviesCard.css';
 
 function MoviesCard({  movie, handleDelete, handleLikeMovie }) {
 
+  //подписываемся на контекст
+  const currentUser = React.useContext(CurrentUserContext);
+
+  //константа по сравнению айди пользователя кто сохранил фильм с айди пользователя в данный момент 
+  const isLiked = owner === currentUser._id;
   //делаем единый объект из констант фильма
-  const { nameRU, duration, trailerLink, image } = movie;
+  const { nameRU, duration, trailerLink, image, owner } = movie;
 
   //функция чтобы переделать длину в минутах в часы и минуты
   function getTimeFromMins(duration) {
@@ -20,6 +26,10 @@ function MoviesCard({  movie, handleDelete, handleLikeMovie }) {
   //проверяем ставить ли иконку на удаление 
   const iconDelete = (routeWay === '/movies' ? '' : 'movies__like_delete');
 
+  /*function deleteOrLikeMovie() {
+    if()
+  }
+  */
   //проверяем какую функцию ставить на кнопку по роуту и потом передаем их в родительский компонент
   const deleteOrLikeMovie = (routeWay === '/movies' ? handleLikeMovie : handleDelete);
 

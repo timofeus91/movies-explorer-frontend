@@ -15,7 +15,7 @@ function MoviesCardList({moviesCards}) {
                             
                             />
                     )
-                        )}
+        ) }
         </ul>
         <button className="movies__button" type="button">Ещё</button>
       </section>

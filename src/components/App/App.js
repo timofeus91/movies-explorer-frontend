@@ -32,8 +32,8 @@ function App() {
   //хук для хранения отфильтрованных результатов поиска во всех фильмах
   const [resultSearchFilm, setResultSearchFilm] = React.useState([]);
 
-  //хук по сохранению всех фильмов в локальное хранилище
-  /*const [localAllMovies, setLocalAllMovies] = React.useState([]); */
+  //хук по сохранению всех фильмов из поиска при загрузке страницы
+  const [localAllMovies, setLocalAllMovies] = React.useState([]); 
 
   //хук по состоянию чекбокса короткометражного фильма
   const [isShortFilm, setIsShortFilm] = React.useState(false);
@@ -61,6 +61,7 @@ function App() {
             .then(res => {
                 if(res) {
                     setLoggedIn(true);
+                    allMoviesSave();
                     history.push('/movies');
                 }
             })
@@ -92,6 +93,7 @@ function App() {
             .then(res => {
                 localStorage.setItem('jwt', res.token);
                 setLoggedIn(true);
+                allMoviesSave();
                 history.push('/movies');
   
             })
@@ -152,14 +154,33 @@ function App() {
     
 */
 
-    //базовая функция по фильтрации фильмов и их поиску по значения из input
-    function searchAnyFilm(data, query) {
+    //функция для записи всех фильмов со стороннего апи в хук состояния и локальное хранилище. Используется при проверке токена и при авторизации
+    function allMoviesSave() {
+      moviesApi.getMovies()
+        .then(movies => {
+          console.log('Ниже у нас должен быть массив объектов');
+          console.log(movies);
+          localStorage.setItem('movies', JSON.stringify(movies));
+          setLocalAllMovies(movies);
+          console.log(localAllMovies);
 
+        })
+        
+        .catch((err) => console.log(err));
     }
+
+  
     //обработчик для поиска фильмов
     function handleSearchFilm(data) {
       console.log('пока просто клик');
       console.log(`А вот это данные: ${data}`);
+      const allMovies = JSON.parse(localStorage.getItem('movies'));
+      console.log('Ниже будет то что сохранено в локальном хранилище под названием movies');
+      console.log(allMovies);
+      console.log(typeof(data));
+      setResultSearchFilm(!data ? [] : allMovies.filter(item => (item.nameRU.toLowerCase().includes(data.toLowerCase()) || item.nameEN.toLowerCase().includes(data.toLowerCase()))))
+
+
     }
 
     //обработчик для поиска фильма среди сохраненных фильмов 
@@ -197,6 +218,7 @@ function App() {
       component={Movies}
       onQuery = {handleSearchFilm}
       shortFilm={handleShortFilm}
+      moviesCards={resultSearchFilm}
     />
 
     <ProtectedRoute
