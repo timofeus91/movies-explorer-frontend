@@ -159,7 +159,13 @@ function App() {
 
   //обработчик для добавления фильма
   function handleAddMovie(movie) {
-
+    mainApi.createMovie(movie)
+        .then(() => {
+          getLocalMovies();
+        })
+        .catch((err) => {
+          console.log(`Произошла ошибка - ${err}`);
+        })
   }
 
 
@@ -167,7 +173,7 @@ function App() {
   function handleDeleteMovie(movieId) {
     mainApi.deleteMovie(movieId)
         .then(() => {
-        //фильм удалили по айди, а нужно ли что-нибудь здесь делать еще?Может получать обновленный список сохраненных фильмов? Подумать!!!
+          getLocalMovies();
         })
         .catch((err) => {
           console.log(`Произошла ошибка - ${err}`);
