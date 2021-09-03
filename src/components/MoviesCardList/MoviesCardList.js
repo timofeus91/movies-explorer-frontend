@@ -2,15 +2,16 @@ import React from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import './MoviesCardList.css';
 
-function MoviesCardList({moviesCards, handleLikeMovie}) {
+function MoviesCardList({moviesCards, handleLikeMovie, handleDelete}) {
     return (
       <section className="movies">
         <ul className="movies__list">
         { moviesCards.map(item => (
                             <MoviesCard
                             movie={item}
-                            key={item.id || item.movieId}
+                            key={item.movieId || item.id}
                             handleLikeMovie={handleLikeMovie}
+                            handleDelete={handleDelete}
                             
                             
                             

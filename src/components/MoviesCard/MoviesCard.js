@@ -10,8 +10,6 @@ function MoviesCard({  movie, handleDelete, handleLikeMovie }) {
   //хук по проверке роута
   const routeWay = useLocation().pathname;
 
-  console.log(currentUser);
-  console.log(currentUser._id);
 
 
   //константа по сравнению айди пользователя кто сохранил фильм с айди пользователя в данный момент 
@@ -32,13 +30,19 @@ function MoviesCard({  movie, handleDelete, handleLikeMovie }) {
 
   //проверяем ставить ли иконку на удаление 
   const iconDelete = (routeWay === '/movies' ? '' : 'movies__like_delete');
+  //проверяем есть или нету лайка на карточке
+  const likeOrNotLike = (isLiked ? 'movies__like_active' : '');
 
 
   //проверяем какую функцию ставить на кнопку по роуту и потом передаем их в родительский компонент
-  const deleteOrLikeMovie = (routeWay === '/movies' ? ( isLiked ? handleDelete(movie.movieId ? movie.movieId : movie.id) : handleLikeMovie(movie)) : handleDelete(movie.movieId ? movie.movieId : movie.id));
-
-  //проверяем есть или нету лайка на карточке
-  const likeOrNotLike = (isLiked ? 'movies__like_active' : '');
+  function deleteOrLikeMovie() {
+    if(isLiked) {
+      handleDelete(movie.movieId || movie.id);
+    }
+    else {
+      handleLikeMovie(movie);
+    }
+  };
 
 
 

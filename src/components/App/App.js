@@ -162,6 +162,7 @@ function App() {
     mainApi.createMovie(movie)
         .then(() => {
           getLocalMovies();
+          console.log(localMovies);
         })
         .catch((err) => {
           console.log(`Произошла ошибка - ${err}`);
@@ -181,10 +182,6 @@ function App() {
 
   }
 
-  //единая функция для добавления или удаления лайка(карточки фильма) на (с) сервера
-  function addOrDeleteLike() {
-    
-  }
 
     //функция для записи всех фильмов со стороннего апи в хук состояния и локальное хранилище. Используется при проверке токена и при авторизации
     function allMoviesSave() {
@@ -243,7 +240,8 @@ function App() {
       onQuery = {handleSearchFilm}
       shortFilm={handleShortFilm}
       moviesCards={resultSearchFilm}
-      handleLikeMovie={addOrDeleteLike}
+      handleLikeMovie={handleAddMovie}
+      handleDelete={handleDeleteMovie}
     />
 
     <ProtectedRoute
