@@ -13,7 +13,7 @@ function MoviesCard({  movie, handleDelete, handleLikeMovie }) {
 
 
   //константа по сравнению айди пользователя кто сохранил фильм с айди пользователя в данный момент 
-  const isLiked = 'Думай как правильно проверить на наличие в базе данных!!!';
+  const isLiked = movie.owner === currentUser._id;
 // movie.owner === currentUser._id
 
   //константа через которую делаем правильный url постера

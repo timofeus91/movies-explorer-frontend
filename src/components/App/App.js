@@ -198,8 +198,26 @@ function App() {
     //обработчик для поиска фильмов
     function handleSearchFilm(data) {
       const allMovies = JSON.parse(localStorage.getItem('movies'));
+      const finalResultSearch = [];
+
+
+      const resultSearch = allMovies.filter(item => ((item.nameRU != null && item.nameRU.toLowerCase().includes(data.toLowerCase())) || (item.nameEN != null && item.nameEN.toLowerCase().includes(data.toLowerCase()))))
       
-      setResultSearchFilm(allMovies.filter(item => ((item.nameRU != null && item.nameRU.toLowerCase().includes(data.toLowerCase())) || (item.nameEN != null && item.nameEN.toLowerCase().includes(data.toLowerCase())))));
+      resultSearch.forEach((item) => {
+        const something = item;
+        if(localMovies.some(item => item.movieId === something.id )) {
+          console.log('Лайку быть!');
+
+        }
+        else {
+          console.log('Лайку не быть!');
+        }
+      })
+
+      console.log(localMovies);
+      console.log(resultSearch);
+      
+      setResultSearchFilm(resultSearch);
 
 
     }
