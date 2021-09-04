@@ -39,6 +39,9 @@ function App() {
   //хук по состоянию чекбокса короткометражного фильма
   const [isShortFilm, setIsShortFilm] = React.useState(false);
 
+  //хук по состоянию клавиши "еще"
+  const [elseShow, setElseShow] = React.useState(true);
+
   
 
   //контекст
@@ -171,8 +174,8 @@ function App() {
 
 
   //обработчик для удаления фильма
-  function handleDeleteMovie(movieId) {
-    mainApi.deleteMovie(movieId)
+  function handleDeleteMovie(movie) {
+    mainApi.deleteMovie(movie._id)
         .then(() => {
           getLocalMovies();
         })
@@ -198,17 +201,20 @@ function App() {
     //обработчик для поиска фильмов
     function handleSearchFilm(data) {
       const allMovies = JSON.parse(localStorage.getItem('movies'));
-      const finalResultSearch = [];
-
-
-      const resultSearch = allMovies.filter(item => ((item.nameRU != null && item.nameRU.toLowerCase().includes(data.toLowerCase())) || (item.nameEN != null && item.nameEN.toLowerCase().includes(data.toLowerCase()))))
+      const localMovies = JSON.parse(localStorage.getItem('saved-movies'));
       
-      resultSearch.forEach((item) => {
+      
+      const finalResultSearch = localMovies.filter(item => ((item.nameRU != null && item.nameRU.toLowerCase().includes(data.toLowerCase())) || (item.nameEN != null && item.nameEN.toLowerCase().includes(data.toLowerCase()))))
+     
+      const allSearch =  allMovies.filter(item => ((item.nameRU != null && item.nameRU.toLowerCase().includes(data.toLowerCase())) || (item.nameEN != null && item.nameEN.toLowerCase().includes(data.toLowerCase()))))
+
+   
+      /*resultSearch.forEach((item) => {
         const movie = item;
         if(localMovies.some(item => item.movieId === movie.id )) {
           movie.owner = currentUser._id;
-          movie['movieId'] = movie['id'];
-          delete movie.id;
+          movie['_id'] = item['_id'];
+          
           finalResultSearch.push(movie);
           console.log('Лайку быть!');
 
@@ -217,18 +223,18 @@ function App() {
           finalResultSearch.push(movie);
           console.log('Лайку не быть!');
         }
-      })
-
+      }) */
+      
       console.log(localMovies);
       console.log(finalResultSearch);
       
-      setResultSearchFilm(finalResultSearch);
+      setResultSearchFilm(allSearch);
 
 
     }
 
     //обработчик для поиска фильма среди сохраненных фильмов 
-    function handleSearchSavedFilm() {
+    function handleSearchSavedFilm(data) {
       console.log('пока просто клик');
     }
     
@@ -236,6 +242,11 @@ function App() {
     function handleShortFilm() {
       setIsShortFilm(!isShortFilm);
       console.log(isShortFilm);
+    }
+
+    //обработчик по кнопке "еще" из списка фильмов
+    function handleElseClick() {
+
     }
 
 
@@ -265,12 +276,17 @@ function App() {
       moviesCards={resultSearchFilm}
       handleLikeMovie={handleAddMovie}
       handleDelete={handleDeleteMovie}
+      elseShow={elseShow}
+      elseClick={handleElseClick}
     />
 
     <ProtectedRoute
       path="/saved-movies"
       loggedIn={loggedIn}
-      component={handleSearchSavedFilm}
+      component={SavedMovies}
+      moviesCards={localMovies}
+      onQuery={handleSearchSavedFilm}
+      handleDelete={handleDeleteMovie}
       shortFilm={handleShortFilm}
     />
 

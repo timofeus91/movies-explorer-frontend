@@ -2,7 +2,7 @@ import React from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import './MoviesCardList.css';
 
-function MoviesCardList({moviesCards, handleLikeMovie, handleDelete}) {
+function MoviesCardList({moviesCards, handleLikeMovie, handleDelete, elseClick, elseShow}) {
     return (
       <section className="movies">
         <ul className="movies__list">
@@ -19,7 +19,7 @@ function MoviesCardList({moviesCards, handleLikeMovie, handleDelete}) {
                     )
         ) }
         </ul>
-        <button className="movies__button" type="button">Ещё</button>
+        <button className={elseShow ? 'movies__button' : 'movies__button_disabled'} type="button" onClick={elseClick}>Ещё</button>
       </section>
     );
 }

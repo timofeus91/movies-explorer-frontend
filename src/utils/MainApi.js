@@ -100,7 +100,7 @@ class MainApi {
                   duration: data.duration,
                   year: data.year,
                   description: data.description,
-                  image: 'https://api.nomoreparties.co' + data.image.url,
+                  image: data.image.url,
                   trailer: data.trailerLink,
                   thumbnail: 'https://api.nomoreparties.co' + data.image.formats.thumbnail.url,
                   movieId: data.id,
@@ -113,7 +113,7 @@ class MainApi {
 
       //метод по удалению фильма
       deleteMovie(movieId) {
-          return fetch(`${this._url}movies/${movieId}`, {
+          return fetch(`${this._url}movies/${movieId}/`, {
               method: 'DELETE',
               headers: this._headers,
           })

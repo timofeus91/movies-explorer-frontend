@@ -5,7 +5,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
 import './SavedMovies.css';
 
-function SavedMovies({loggedIn, onQuery, shortFilm}) {
+function SavedMovies({loggedIn, onQuery, shortFilm, moviesCards, handleDelete}) {
     return (
       <>
         <Header
@@ -16,6 +16,9 @@ function SavedMovies({loggedIn, onQuery, shortFilm}) {
         onQuery={onQuery}
         shortFilm={shortFilm} />
         <MoviesCardList
+          moviesCards={moviesCards}
+          handleDelete={handleDelete}
+          elseShow={false}
           />
         <Footer />
       </>
