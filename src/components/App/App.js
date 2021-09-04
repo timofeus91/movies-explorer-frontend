@@ -204,20 +204,25 @@ function App() {
       const resultSearch = allMovies.filter(item => ((item.nameRU != null && item.nameRU.toLowerCase().includes(data.toLowerCase())) || (item.nameEN != null && item.nameEN.toLowerCase().includes(data.toLowerCase()))))
       
       resultSearch.forEach((item) => {
-        const something = item;
-        if(localMovies.some(item => item.movieId === something.id )) {
+        const movie = item;
+        if(localMovies.some(item => item.movieId === movie.id )) {
+          movie.owner = currentUser._id;
+          movie['movieId'] = movie['id'];
+          delete movie.id;
+          finalResultSearch.push(movie);
           console.log('Лайку быть!');
 
         }
         else {
+          finalResultSearch.push(movie);
           console.log('Лайку не быть!');
         }
       })
 
       console.log(localMovies);
-      console.log(resultSearch);
+      console.log(finalResultSearch);
       
-      setResultSearchFilm(resultSearch);
+      setResultSearchFilm(finalResultSearch);
 
 
     }

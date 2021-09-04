@@ -37,7 +37,7 @@ function MoviesCard({  movie, handleDelete, handleLikeMovie }) {
   //проверяем какую функцию ставить на кнопку по роуту и потом передаем их в родительский компонент
   function deleteOrLikeMovie() {
     if(isLiked) {
-      handleDelete(movie.movieId || movie.id);
+      handleDelete(movie.movieId);
     }
     else {
       handleLikeMovie(movie);
