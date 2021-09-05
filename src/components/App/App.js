@@ -26,6 +26,9 @@ function App() {
   //хук по состоянию InfoTooltip
   const [isInfoTooltip, setIsInfoTooltip] = React.useState(false);
 
+  //хук по состоянию прелоадера
+  const [isPreloader, setIsPreloader] = React.useState(false);
+
   //хук по состоянию прохождения регистрации
   const [isAuthReqSuccess, setIsAuthReqSuccess] = React.useState(false);
 
@@ -42,8 +45,6 @@ function App() {
   //хук по состоянию клавиши "еще"
   const [elseShow, setElseShow] = React.useState(true);
 
-  
-
   //контекст
   const [currentUser, setCurrentUser] = React.useState({});
 
@@ -52,14 +53,9 @@ function App() {
     setIsInfoTooltip(!isInfoTooltip);
   }
 
-  React.useEffect(() => {
-    console.log(isShortFilm);
-  }, []
-  );
   
-   
 
-   //эффект по проверке токена
+   //эффект по проверке токена, получению всех сохранненых фильмов пользователя, его историю предыдущего поиска фильма, загрузке всех фильмов со стороннего апи в хук и локальное хранилище 
    React.useEffect(() => {
     const token = localStorage.getItem('jwt');
     if (token) {
@@ -69,6 +65,8 @@ function App() {
                     setLoggedIn(true);
                     allMoviesSave();
                     getLocalMovies();
+                    //const searchResultSaved = JSON.parse(localStorage.getItem('search-result-movies'));
+                    //setResultSearchFilm(searchResultSaved)
                     history.push('/movies');
                 }
             })
@@ -119,6 +117,7 @@ function App() {
     localStorage.removeItem('jwt');
     localStorage.removeItem('movies');
     localStorage.removeItem('saved-movies');
+    localStorage.removeItem('search-result-movies');
     history.push('/');
     }
 
@@ -133,7 +132,7 @@ function App() {
           console.log(`Произошла ошибка - ${err}`);
         })
     }
-  }, [loggedIn]);
+  }, [history, loggedIn]);
 
   //обработчик для обновления информации о пользователе
   function handleUpdateUser(data) {
@@ -198,47 +197,63 @@ function App() {
     }
 
     //функция по фильтру массива на совпадение данных из инпута
-    function searchFilter(array, data) {
-      return array.filter(item => ((item.nameRU != null && item.nameRU.toLowerCase().includes(data.toLowerCase())) || (item.nameEN != null && item.nameEN.toLowerCase().includes(data.toLowerCase()))))
+    function searchFilter(array, data, short) {
+      if(short) {
+        return array.filter(item => ((item.nameRU != null && item.nameRU.toLowerCase().includes(data.toLowerCase()) && item.duration <40 ) || (item.nameEN != null && item.nameEN.toLowerCase().includes(data.toLowerCase()) && item.duration <40)))
+      }
+      else {
+        return array.filter(item => ((item.nameRU != null && item.nameRU.toLowerCase().includes(data.toLowerCase())) || (item.nameEN != null && item.nameEN.toLowerCase().includes(data.toLowerCase()))))
+      }
+      
     }
 
-  
+
      //обработчик для поиска фильмов
     function handleSearchFilm(data) {
+      //запускаем прелоадер пока функция выполняется 
+      setIsPreloader(true);
+
+      //берем из локального хранилища массивы всех фильмов и сохраненных пользователем фильмов 
       const allMovies = JSON.parse(localStorage.getItem('movies'));
       const localMovies = JSON.parse(localStorage.getItem('saved-movies'));
-      
-      //let finalResultSearch = [];
 
-      const localMoviesResult = searchFilter(localMovies, data);
-
-      const allMoviesResult =searchFilter(allMovies, data);
       
-      console.log(localMoviesResult);
-      console.log(allMoviesResult);
-      //const all = [{id:0}, {id:1}, {id:2}];
-      //const local = [{movieId:1}];
-  
+      //создаем константу куда записываем результат фильтрации двух массивово что выше в коде
+      const localMoviesResult = searchFilter(localMovies, data, isShortFilm);
+      const allMoviesResult =searchFilter(allMovies, data, isShortFilm);
+      
+      //создаем константу куда записывем итоговый массив фильмов. Если есть совпадения объектов, то добавляется из сохраненных фильмов. Если нет совпадения , то из общих фильмов. 
       const finalResultSearch = allMoviesResult.map((am) => {
         const lm = localMoviesResult.find((m) => m.movieId === am.id)
         return lm ?? am;
       }); 
-      console.log(finalResultSearch);
-      
+      ;
+      //добавляем в массив для отрисовки 
       setResultSearchFilm(finalResultSearch);
 
+      //сохраняем в локальное хранилище результат поиска
+      localStorage.setItem('search-result-movies', JSON.stringify(finalResultSearch));
 
+      //выключаем прелоадер по итогу выполнения функции 
+      setIsPreloader(false);
     } 
+
 
     //обработчик для поиска фильма среди сохраненных фильмов 
     function handleSearchSavedFilm(data) {
-      console.log('пока просто клик');
+      setIsPreloader(true);
+      const localMoviesResult = searchFilter(localMovies, data, isShortFilm);
+      setLocalMovies(localMoviesResult);
+      setIsPreloader(false);
+
     }
     
+    console.log(isShortFilm);
+
     //обработчик для изменения значения короткометражный фильм или нет
     function handleShortFilm() {
       setIsShortFilm(!isShortFilm);
-      console.log(isShortFilm);
+      
     }
 
     //обработчик по кнопке "еще" из списка фильмов
@@ -246,14 +261,6 @@ function App() {
 
     }
 
-
-   /* const all = [{id:0}, {id:1}, {id:2}];
-  const local = [{movieId:1}];
-  
-  const result = all.map((am) => {
-    const lm = local.find((m) => m.movieId === am.id)
-    return lm ?? am;
-  }); */
 
 
   return (
@@ -281,6 +288,9 @@ function App() {
       handleDelete={handleDeleteMovie}
       elseShow={elseShow}
       elseClick={handleElseClick}
+      isPreloader={isPreloader}
+      
+      
     />
 
     <ProtectedRoute
@@ -291,6 +301,8 @@ function App() {
       onQuery={handleSearchSavedFilm}
       handleDelete={handleDeleteMovie}
       shortFilm={handleShortFilm}
+      isPreloader={isPreloader}
+      
     />
 
     <ProtectedRoute

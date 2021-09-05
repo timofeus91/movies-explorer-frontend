@@ -3,8 +3,9 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
+import Preloader from "../Preloader/Preloader";
 
-function Movies({loggedIn, onQuery, shortFilm, moviesCards, handleLikeMovie, handleDelete, elseShow, elseClick}) {
+function Movies({loggedIn, onQuery, shortFilm, moviesCards, handleLikeMovie, handleDelete, elseShow, elseClick, isLiked, isPreloader}) {
     return (
       <>
         <Header
@@ -13,14 +14,20 @@ function Movies({loggedIn, onQuery, shortFilm, moviesCards, handleLikeMovie, han
         />
         <SearchForm
         onQuery={onQuery}
-        shortFilm ={shortFilm} />
+        shortFilm ={shortFilm}
+         />
+        <Preloader
+        isPreloader={isPreloader} />
         <MoviesCardList
          moviesCards={moviesCards}
          handleLikeMovie={handleLikeMovie}
          handleDelete={handleDelete}
          elseShow={elseShow}
          elseClick={elseClick}
+         isLiked={isLiked}
          />
+
+
         <Footer />
       </>
     );

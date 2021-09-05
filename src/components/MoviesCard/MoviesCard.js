@@ -5,6 +5,8 @@ import { useLocation } from 'react-router-dom';
 
 function MoviesCard({  movie, handleDelete, handleLikeMovie }) {
 
+  
+
   //подписываемся на контекст
   const currentUser = React.useContext(CurrentUserContext);
   //хук по проверке роута
@@ -29,18 +31,21 @@ function MoviesCard({  movie, handleDelete, handleLikeMovie }) {
   }
 
   //проверяем ставить ли иконку на удаление 
-  const iconDelete = (routeWay === '/movies' ? '' : 'movies__like_delete');
+  const iconDelete = routeWay === '/movies' ? '' : 'movies__like_delete';
+
   //проверяем есть или нету лайка на карточке
-  const likeOrNotLike = (isLiked ? 'movies__like_active' : '');
+  const likeOrNotLike = isLiked ? 'movies__like_active' : '';
 
 
   //проверяем какую функцию ставить на кнопку по роуту и потом передаем их в родительский компонент
   function deleteOrLikeMovie() {
     if(isLiked) {
       handleDelete(movie);
+      
     }
     else {
       handleLikeMovie(movie);
+      
     }
   };
 

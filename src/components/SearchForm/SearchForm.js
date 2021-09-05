@@ -33,6 +33,7 @@ function SearchForm({ onQuery, shortFilm }) {
         </form>
             <SearchCheckbox
             shortFilm = {shortFilm}
+            
             />
         </div>
       </section>

@@ -2,10 +2,11 @@ import React from "react";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import Preloader from "../Preloader/Preloader";
 import SearchForm from "../SearchForm/SearchForm";
 import './SavedMovies.css';
 
-function SavedMovies({loggedIn, onQuery, shortFilm, moviesCards, handleDelete}) {
+function SavedMovies({loggedIn, onQuery, shortFilm, moviesCards, handleDelete, isPreloader}) {
     return (
       <>
         <Header
@@ -14,7 +15,12 @@ function SavedMovies({loggedIn, onQuery, shortFilm, moviesCards, handleDelete}) 
         />
         <SearchForm 
         onQuery={onQuery}
-        shortFilm={shortFilm} />
+        shortFilm={shortFilm} 
+        
+        />
+        <Preloader
+        isPreloader={isPreloader}
+        />
         <MoviesCardList
           moviesCards={moviesCards}
           handleDelete={handleDelete}
