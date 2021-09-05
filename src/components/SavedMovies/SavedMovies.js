@@ -24,7 +24,6 @@ function SavedMovies({loggedIn, onQuery, shortFilm, moviesCards, handleDelete, i
         <MoviesCardList
           moviesCards={moviesCards}
           handleDelete={handleDelete}
-          elseShow={false}
           />
         <Footer />
       </>

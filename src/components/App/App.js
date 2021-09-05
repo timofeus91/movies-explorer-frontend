@@ -42,8 +42,6 @@ function App() {
   //хук по состоянию чекбокса короткометражного фильма
   const [isShortFilm, setIsShortFilm] = React.useState(false);
 
-  //хук по состоянию клавиши "еще"
-  const [elseShow, setElseShow] = React.useState(true);
 
   //контекст
   const [currentUser, setCurrentUser] = React.useState({});
@@ -53,7 +51,6 @@ function App() {
     setIsInfoTooltip(!isInfoTooltip);
   }
 
-  
 
    //эффект по проверке токена, получению всех сохранненых фильмов пользователя, его историю предыдущего поиска фильма, загрузке всех фильмов со стороннего апи в хук и локальное хранилище 
    React.useEffect(() => {
@@ -256,10 +253,7 @@ function App() {
       
     }
 
-    //обработчик по кнопке "еще" из списка фильмов
-    function handleElseClick() {
 
-    }
 
 
 
@@ -286,8 +280,6 @@ function App() {
       moviesCards={resultSearchFilm}
       handleLikeMovie={handleAddMovie}
       handleDelete={handleDeleteMovie}
-      elseShow={elseShow}
-      elseClick={handleElseClick}
       isPreloader={isPreloader}
       
       
