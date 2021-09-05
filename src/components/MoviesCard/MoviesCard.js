@@ -49,8 +49,6 @@ function MoviesCard({  movie, handleDelete, handleLikeMovie }) {
     }
   };
 
-
-
     return (
       <li className="movies__item">
         <a href={movie.trailerLink} target="_blank" rel="noopener noreferrer">

@@ -62,8 +62,8 @@ function App() {
                     setLoggedIn(true);
                     allMoviesSave();
                     getLocalMovies();
-                    //const searchResultSaved = JSON.parse(localStorage.getItem('search-result-movies'));
-                    //setResultSearchFilm(searchResultSaved)
+                    const searchResultSaved = JSON.parse(localStorage.getItem('search-result-movies'));
+                    setResultSearchFilm(searchResultSaved)
                     history.push('/movies');
                 }
             })
