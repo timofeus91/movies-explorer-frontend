@@ -197,41 +197,38 @@ function App() {
         .catch((err) => console.log(err));
     }
 
+    //функция по фильтру массива на совпадение данных из инпута
+    function searchFilter(array, data) {
+      return array.filter(item => ((item.nameRU != null && item.nameRU.toLowerCase().includes(data.toLowerCase())) || (item.nameEN != null && item.nameEN.toLowerCase().includes(data.toLowerCase()))))
+    }
+
   
-    //обработчик для поиска фильмов
+     //обработчик для поиска фильмов
     function handleSearchFilm(data) {
       const allMovies = JSON.parse(localStorage.getItem('movies'));
       const localMovies = JSON.parse(localStorage.getItem('saved-movies'));
       
-      
-      const finalResultSearch = localMovies.filter(item => ((item.nameRU != null && item.nameRU.toLowerCase().includes(data.toLowerCase())) || (item.nameEN != null && item.nameEN.toLowerCase().includes(data.toLowerCase()))))
-     
-      const allSearch =  allMovies.filter(item => ((item.nameRU != null && item.nameRU.toLowerCase().includes(data.toLowerCase())) || (item.nameEN != null && item.nameEN.toLowerCase().includes(data.toLowerCase()))))
+      //let finalResultSearch = [];
 
-   
-      /*resultSearch.forEach((item) => {
-        const movie = item;
-        if(localMovies.some(item => item.movieId === movie.id )) {
-          movie.owner = currentUser._id;
-          movie['_id'] = item['_id'];
-          
-          finalResultSearch.push(movie);
-          console.log('Лайку быть!');
+      const localMoviesResult = searchFilter(localMovies, data);
 
-        }
-        else {
-          finalResultSearch.push(movie);
-          console.log('Лайку не быть!');
-        }
-      }) */
+      const allMoviesResult =searchFilter(allMovies, data);
       
-      console.log(localMovies);
+      console.log(localMoviesResult);
+      console.log(allMoviesResult);
+      //const all = [{id:0}, {id:1}, {id:2}];
+      //const local = [{movieId:1}];
+  
+      const finalResultSearch = allMoviesResult.map((am) => {
+        const lm = localMoviesResult.find((m) => m.movieId === am.id)
+        return lm ?? am;
+      }); 
       console.log(finalResultSearch);
       
-      setResultSearchFilm(allSearch);
+      setResultSearchFilm(finalResultSearch);
 
 
-    }
+    } 
 
     //обработчик для поиска фильма среди сохраненных фильмов 
     function handleSearchSavedFilm(data) {
@@ -250,7 +247,13 @@ function App() {
     }
 
 
-
+   /* const all = [{id:0}, {id:1}, {id:2}];
+  const local = [{movieId:1}];
+  
+  const result = all.map((am) => {
+    const lm = local.find((m) => m.movieId === am.id)
+    return lm ?? am;
+  }); */
 
 
   return (

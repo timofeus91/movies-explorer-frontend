@@ -100,7 +100,7 @@ class MainApi {
                   duration: data.duration,
                   year: data.year,
                   description: data.description,
-                  image: data.image.url,
+                  image: 'https://api.nomoreparties.co' + data.image.url,
                   trailer: data.trailerLink,
                   thumbnail: 'https://api.nomoreparties.co' + data.image.formats.thumbnail.url,
                   movieId: data.id,

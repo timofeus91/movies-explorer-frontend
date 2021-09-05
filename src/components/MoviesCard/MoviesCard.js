@@ -14,11 +14,11 @@ function MoviesCard({  movie, handleDelete, handleLikeMovie }) {
 
   //константа по сравнению айди пользователя кто сохранил фильм с айди пользователя в данный момент 
   const isLiked = movie.owner === currentUser._id;
-// movie.owner === currentUser._id
+
 
   //константа через которую делаем правильный url постера
-  const imageUrl = 'https://api.nomoreparties.co'+ movie.image.url;
-
+  const imageUrl = isLiked ? movie.image : 'https://api.nomoreparties.co'+ movie.image.url;
+  
   //функция чтобы переделать длину в минутах в часы и минуты
   function getTimeFromMins(duration) {
     const hours = Math.floor(duration/60)
