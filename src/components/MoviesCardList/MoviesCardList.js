@@ -10,7 +10,8 @@ import {
 function MoviesCardList({
   moviesCards,
   handleLikeMovie,
-  handleDelete
+  handleDelete,
+  moviesError
 }) {
   //хук по проверке роута
   const routeWay = useLocation().pathname;
@@ -62,7 +63,7 @@ function MoviesCardList({
     if (windowInnerWidth < 769) {
       setMovieCount(movieCount + 2)
     } else {
-      setMovieCount(movieCount + 3)
+      setMovieCount(movieCount + 4)
     }
   }
 
@@ -77,6 +78,7 @@ function MoviesCardList({
 
     return (
       <section className="movies">
+        <p className={moviesError ? 'movies__error' : 'movies__error_disabled'}>Ничего не найдено</p>
         <ul className="movies__list">
         { moviesCardsRender.map(item => (
                             <MoviesCard

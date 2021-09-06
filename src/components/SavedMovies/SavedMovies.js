@@ -6,7 +6,7 @@ import Preloader from "../Preloader/Preloader";
 import SearchForm from "../SearchForm/SearchForm";
 import './SavedMovies.css';
 
-function SavedMovies({loggedIn, onQuery, shortFilm, moviesCards, handleDelete, isPreloader}) {
+function SavedMovies({loggedIn, onQuery, shortFilm, moviesCards, handleDelete, isPreloader, moviesError}) {
     return (
       <>
         <Header
@@ -24,6 +24,7 @@ function SavedMovies({loggedIn, onQuery, shortFilm, moviesCards, handleDelete, i
         <MoviesCardList
           moviesCards={moviesCards}
           handleDelete={handleDelete}
+          moviesError={moviesError}
           />
         <Footer />
       </>

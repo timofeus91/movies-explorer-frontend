@@ -5,7 +5,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 
-function Movies({loggedIn, onQuery, shortFilm, moviesCards, handleLikeMovie, handleDelete, isLiked, isPreloader}) {
+function Movies({loggedIn, onQuery, shortFilm, moviesCards, handleLikeMovie, handleDelete, isLiked, isPreloader, moviesError}) {
     return (
       <>
         <Header
@@ -23,6 +23,7 @@ function Movies({loggedIn, onQuery, shortFilm, moviesCards, handleLikeMovie, han
          handleLikeMovie={handleLikeMovie}
          handleDelete={handleDelete}
          isLiked={isLiked}
+         moviesError={moviesError}
          />
 
 
