@@ -30,17 +30,11 @@ function MoviesCardList({moviesCards, handleLikeMovie, handleDelete }) {
 
    const moviesCardsRender = moviesCards.slice(0, movieCount)
 
+     console.log(moviesCardsRender.length);
+     console.log(moviesCards.length);
 
 
-
-   function elseShow() {
-    if(moviesCardsRender.length < moviesCards.length ) {
-      return true
-    }
-    else {
-      return false
-    }
-   } 
+   const elseShow = moviesCardsRender.length = moviesCards.length;
    //функция которая будет менять количество отображаемых карточек по умолчанию в случае изменения размера окна 
    function onResize() {
     const windowInnerWidth = window.innerWidth;
