@@ -35,8 +35,6 @@ function App() {
   //хук для хранения отфильтрованных результатов поиска во всех фильмах
   const [resultSearchFilm, setResultSearchFilm] = React.useState([]);
 
-  
-
   //хук для хранения всех сохраненных фильмов
   const [localMovies, setLocalMovies] = React.useState([]); 
 
@@ -63,7 +61,8 @@ function App() {
                     setLoggedIn(true);
                     allMoviesSave();
                     getLocalMovies();
-                    
+                    //const searchResultSaved = JSON.parse(localStorage.getItem('search-result-movies'));
+                    //setResultSearchFilm(searchResultSaved === null ? [] : searchResultSaved);
                     history.push('/movies');
                 }
             })
@@ -161,7 +160,6 @@ function App() {
     mainApi.createMovie(movie)
         .then(() => {
           getLocalMovies();
-          console.log(localMovies);
         })
         .catch((err) => {
           console.log(`Произошла ошибка - ${err}`);
@@ -224,7 +222,25 @@ function App() {
         const lm = localMoviesResult.find((m) => m.movieId === am.id)
         return lm ?? am;
       }); 
-      ;
+      
+      /*let finalResultSearch = [];
+
+
+      allMoviesResult.forEach((item) => {
+        const movie = item;
+        if(localMoviesResult.some(item => item.movieId === movie.id )) {
+          movie.owner = currentUser._id;
+          finalResultSearch.push(movie);
+          console.log('Лайку быть!');
+        }
+        else {
+          finalResultSearch.push(movie);
+          console.log('Лайку не быть!');
+        }
+      }) 
+      */
+
+      console.log(finalResultSearch)
       //добавляем в массив для отрисовки 
       setResultSearchFilm(finalResultSearch);
 
@@ -234,7 +250,8 @@ function App() {
       //выключаем прелоадер по итогу выполнения функции 
       setIsPreloader(false);
     } 
-
+    
+  
 
     //обработчик для поиска фильма среди сохраненных фильмов 
     function handleSearchSavedFilm(data) {
@@ -245,7 +262,6 @@ function App() {
 
     }
     
-    console.log(isShortFilm);
 
     //обработчик для изменения значения короткометражный фильм или нет
     function handleShortFilm() {

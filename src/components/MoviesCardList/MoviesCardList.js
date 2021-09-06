@@ -83,7 +83,7 @@ function MoviesCardList({moviesCards, handleLikeMovie, handleDelete }) {
         { moviesCardsRender.map(item => (
                             <MoviesCard
                             movie={item}
-                            key={item.movieId || item.id}
+                            key={item.id || item.movieId}
                             handleLikeMovie={handleLikeMovie}
                             handleDelete={handleDelete}
                             
