@@ -1,7 +1,7 @@
 import React from "react";
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import './MoviesCard.css';
 import { useLocation } from 'react-router-dom';
+import './MoviesCard.css';
 
 function MoviesCard({  movie, handleDelete, handleLikeMovie }) {
 

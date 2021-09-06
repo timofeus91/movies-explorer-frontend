@@ -9,7 +9,21 @@ function MoviesCardList({moviesCards, handleLikeMovie, handleDelete }) {
    //хук по проверке роута
    const routeWay = useLocation().pathname;
 
-
+     //функция которая ставится по умолчанию в movieCount для отображения нужного количества карточек по умолчанию в зависимости от размера окна в момент
+     function defaultResize() {
+      const windowInnerWidth = window.innerWidth;
+      
+      switch (true) {
+        case (windowInnerWidth < 600):
+          return 5
+        case (windowInnerWidth < 900):
+          return 8
+        case (windowInnerWidth < 1280):
+          return 12
+        default: return 12
+  
+      }
+     }
 
 
    const [movieCount, setMovieCount] = React.useState(defaultResize);
@@ -17,21 +31,7 @@ function MoviesCardList({moviesCards, handleLikeMovie, handleDelete }) {
    const moviesCardsRender = moviesCards.slice(0, movieCount)
 
 
-   //функция которая ставится по умолчанию в movieCount для отображения нужного количества карточек по умолчанию в зависимости от размера окна в момент
-   function defaultResize() {
-    const windowInnerWidth = window.innerWidth;
-    
-    switch (true) {
-      case (windowInnerWidth < 600):
-        return 5
-      case (windowInnerWidth < 900):
-        return 8
-      case (windowInnerWidth < 1280):
-        return 12
-      default: return 12
 
-    }
-   }
 
    function elseShow() {
     if(moviesCardsRender.length < moviesCards.length ) {
@@ -40,7 +40,7 @@ function MoviesCardList({moviesCards, handleLikeMovie, handleDelete }) {
     else {
       return false
     }
-   }
+   } 
    //функция которая будет менять количество отображаемых карточек по умолчанию в случае изменения размера окна 
    function onResize() {
     const windowInnerWidth = window.innerWidth;

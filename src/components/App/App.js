@@ -35,6 +35,7 @@ function App() {
   //хук для хранения отфильтрованных результатов поиска во всех фильмах
   const [resultSearchFilm, setResultSearchFilm] = React.useState([]);
 
+  
 
   //хук для хранения всех сохраненных фильмов
   const [localMovies, setLocalMovies] = React.useState([]); 
@@ -62,8 +63,7 @@ function App() {
                     setLoggedIn(true);
                     allMoviesSave();
                     getLocalMovies();
-                    const searchResultSaved = JSON.parse(localStorage.getItem('search-result-movies'));
-                    setResultSearchFilm(searchResultSaved)
+                    
                     history.push('/movies');
                 }
             })
