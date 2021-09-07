@@ -51,6 +51,12 @@ function App() {
   const [moviesError, setMoviesError] = React.useState(false);
 
 
+  //берем из локального хранилища массивы всех фильмов и сохраненных пользователем фильмов. и истории поиска фильмов пользователем 
+  const allMoviesStorage = JSON.parse(localStorage.getItem('movies'));
+  const localMoviesStorage = JSON.parse(localStorage.getItem('saved-movies'));
+  const searchResultSaved = JSON.parse(localStorage.getItem('search-result-movies'));
+
+  
   //контекст
   const [currentUser, setCurrentUser] = React.useState({});
 
@@ -60,26 +66,6 @@ function App() {
   }
 
 
-  //эффект по проверке токена, получению всех сохранненых фильмов пользователя, его историю предыдущего поиска фильма, загрузке всех фильмов со стороннего апи в хук и локальное хранилище 
-  React.useEffect(() => {
-    const token = localStorage.getItem('jwt');
-    if (token) {
-      mainApi.checkToken(token)
-        .then(res => {
-          if (res) {
-            setLoggedIn(true);
-            allMoviesSave();
-            getLocalMovies();
-            //const searchResultSaved = JSON.parse(localStorage.getItem('search-result-movies'));
-            //setResultSearchFilm(searchResultSaved === null ? [] : searchResultSaved);
-            history.push('/movies');
-          }
-        })
-        .catch((err) => {
-          console.log(`Произошла ошибка - ${err}`);
-        })
-    }
-  }, []);
 
   //обработчик регистрации
   function handleRegister(data) {
@@ -97,17 +83,26 @@ function App() {
       })
   }
 
-  //обработчик авторизации
+  //обработчик авторизации. В нем проводим авторизацию через отправку данных, а потом через API методом checkTokenGetUser проверяем токен и выдаем данные пользователя 
   function handleLogin(data) {
     mainApi.login(data)
       .then(res => {
         localStorage.setItem('jwt', res.token);
-        setLoggedIn(true);
-        allMoviesSave();
-        getLocalMovies();
-        history.push('/movies');
-
+      }).then(() => {
+        const token = localStorage.getItem('jwt');
+        mainApi.checkTokenGetUser(token)
+          .then(res => {
+            if (res) {
+              setLoggedIn(true);
+              setCurrentUser(res);
+              history.push('/movies');
+            }
+          })
+          .catch((err) => {
+            console.log(`Произошла ошибка - ${err}`);
+          })
       })
+
       .catch((err) => {
         console.log(`Произошла ошибка - ${err}`);
         handleInfoTooltip();
@@ -125,35 +120,57 @@ function App() {
     localStorage.removeItem('search-result-movies');
     history.push('/');
   }
+    //эффект по загрузке всех фильмов пользователя и всех фильмов со стороннего API в случае авторизации. Проверяется через зависимость.  
+    React.useEffect(() => {
 
-  //эффект для получения информации о пользователе
+      allMoviesSave();
+      getLocalMovies();
+    },[loggedIn])
+
+  //эффект по проверке токена, получению всех сохранненых фильмов пользователя, его историю предыдущего поиска фильма, загрузке всех фильмов со стороннего апи в хук и локальное хранилище . Все это делается с использованием API запроса к данным пользователя через метод checkTokenGetUser.
   React.useEffect(() => {
-    if (loggedIn) {
-      mainApi.getUserMe()
-        .then(userInfo => {
-          setCurrentUser(userInfo);
-        })
-        .catch((err) => {
-          console.log(`Произошла ошибка - ${err}`);
-        })
-    }
-  }, [history, loggedIn]);
-
-  //обработчик для обновления информации о пользователе
-  function handleUpdateUser(data) {
-    mainApi.updateInfo(data)
-      .then(data => {
-        setCurrentUser(data)
-        history.push('/movies');
+    const token = localStorage.getItem('jwt');
+    mainApi.checkTokenGetUser(token)
+      .then(res => {
+        if (res) {
+          setLoggedIn(true);
+          setCurrentUser(res);
+          getLocalMovies();
+          setResultSearchFilm(searchResultSaved === null ? [] : searchResultSaved);
+          history.push('/movies');
+        }
       })
       .catch((err) => {
         console.log(`Произошла ошибка - ${err}`);
+      })
+
+  }, []);
+
+
+
+
+
+
+  //обработчик для обновления информации о пользователе
+  function handleUpdateUser(data) {
+    const token = localStorage.getItem('jwt');
+    mainApi.updateInfo(data, token)
+      .then(data => {
+        setCurrentUser(data)
+        setIsAuthReqSuccess(true);
+      })
+      .catch((err) => {
+        console.log(`Произошла ошибка - ${err}`);
+      })
+      .finally(() => {
+        handleInfoTooltip();
       })
   }
 
   //функция для загрузки всех сохраненных фильмов пользователя и добавления их в стейт-переменную и локальное хранилище
   function getLocalMovies() {
-    mainApi.getMovies()
+    const token = localStorage.getItem('jwt');
+    mainApi.getMovies(token)
       .then(movies => {
         localStorage.setItem('saved-movies', JSON.stringify(movies));
         setLocalMovies(movies);
@@ -164,21 +181,46 @@ function App() {
   }
 
 
+  //функция для изменения лайка после добавления фильма
+  function addLike(movie) {
+    console.log(searchResultSaved)
+    console.log('down movie');
+    console.log(movie);
+    
+    /*const something =() => searchResultSaved.map(item => {
+      if(movie.movieId === item.id) {
+        console.log('Есть совпадение!')
+        item.owner = movie.owner;
+        
+      } else {
+        
+      }
+    })
+    setResultSearchFilm(something);*/
+    
+  }
+
   //обработчик для добавления фильма
   function handleAddMovie(movie) {
-    mainApi.createMovie(movie)
-      .then(() => {
+
+    const token = localStorage.getItem('jwt');
+    mainApi.createMovie(movie, token)
+      .then((movie) => {
         getLocalMovies();
+        addLike(movie);
       })
       .catch((err) => {
         console.log(`Произошла ошибка - ${err}`);
       })
+    
+    
   }
 
 
   //обработчик для удаления фильма
   function handleDeleteMovie(movie) {
-    mainApi.deleteMovie(movie._id)
+    const token = localStorage.getItem('jwt');
+    mainApi.deleteMovie(movie._id, token)
       .then(() => {
         getLocalMovies();
       })
@@ -216,53 +258,37 @@ function App() {
     //запускаем прелоадер пока функция выполняется 
     setIsPreloader(true);
 
-    //берем из локального хранилища массивы всех фильмов и сохраненных пользователем фильмов 
-    const allMovies = JSON.parse(localStorage.getItem('movies'));
-    const localMovies = JSON.parse(localStorage.getItem('saved-movies'));
+    //добавляю setTimeout чтобы было видно что выполняется поиск. Так как если результат такой-же как и в предыдущую итерацию, то может быть непонятно что он выполнился
+    setTimeout(() => {
+      //создаем константу куда записываем результат фильтрации двух массивово что выше в коде
+      const localMoviesResult = searchFilter(localMoviesStorage, data, isShortFilm);
+      const allMoviesResult = searchFilter(allMoviesStorage, data, isShortFilm);
 
+      //создаем константу куда записывем итоговый массив фильмов. Если есть совпадения объектов, то добавляется из сохраненных фильмов. Если нет совпадения , то из общих фильмов. 
+      const finalResultSearch = allMoviesResult.map((am) => {
+        const lm = localMoviesResult.find((m) => m.movieId === am.id)
+        return lm ?? am;
+      });
 
-    //создаем константу куда записываем результат фильтрации двух массивово что выше в коде
-    const localMoviesResult = searchFilter(localMovies, data, isShortFilm);
-    const allMoviesResult = searchFilter(allMovies, data, isShortFilm);
+      
 
-    //создаем константу куда записывем итоговый массив фильмов. Если есть совпадения объектов, то добавляется из сохраненных фильмов. Если нет совпадения , то из общих фильмов. 
-    const finalResultSearch = allMoviesResult.map((am) => {
-      const lm = localMoviesResult.find((m) => m.movieId === am.id)
-      return lm ?? am;
-    });
+      //добавляем в массив для отрисовки 
+      setResultSearchFilm(finalResultSearch);
 
-    /*let finalResultSearch = [];
-
-
-    allMoviesResult.forEach((item) => {
-      const movie = item;
-      if(localMoviesResult.some(item => item.movieId === movie.id )) {
-        movie.owner = currentUser._id;
-        finalResultSearch.push(movie);
-        console.log('Лайку быть!');
+      if (finalResultSearch.length === 0) {
+        setMoviesError(true)
+      } else {
+        setMoviesError(false);
       }
-      else {
-        finalResultSearch.push(movie);
-        console.log('Лайку не быть!');
-      }
-    }) 
-    */
 
-    console.log(finalResultSearch)
-    //добавляем в массив для отрисовки 
-    setResultSearchFilm(finalResultSearch);
-    if(finalResultSearch.length === 0) {
-      setMoviesError(true)
-    }
-    else {
-      setMoviesError(false);
-    }
+      //сохраняем в локальное хранилище результат поиска
+      localStorage.setItem('search-result-movies', JSON.stringify(finalResultSearch));
 
-    //сохраняем в локальное хранилище результат поиска
-    localStorage.setItem('search-result-movies', JSON.stringify(finalResultSearch));
+      //выключаем прелоадер по итогу выполнения функции 
+      setIsPreloader(false);
+    }, 1000)
 
-    //выключаем прелоадер по итогу выполнения функции 
-    setIsPreloader(false);
+
   }
 
 
@@ -270,15 +296,18 @@ function App() {
   //обработчик для поиска фильма среди сохраненных фильмов 
   function handleSearchSavedFilm(data) {
     setIsPreloader(true);
-    const localMoviesResult = searchFilter(localMovies, data, isShortFilm);
-    setLocalMovies(localMoviesResult);
-    if(localMoviesResult.length === 0) {
-      setMoviesError(true)
-    }
-    else {
-      setMoviesError(false);
-    }
-    setIsPreloader(false);
+    //добавляю setTimeout чтобы было видно что выполняется поиск. Так как если результат такой-же как и в предыдущую итерацию, то может быть непонятно что он выполнился
+    setTimeout(() => {
+      const localMoviesResult = searchFilter(localMoviesStorage, data, isShortFilm);
+      setLocalMovies(localMoviesResult);
+      if (localMoviesResult.length === 0) {
+        setMoviesError(true)
+      } else {
+        setMoviesError(false);
+      }
+      setIsPreloader(false);
+    }, 1000)
+
 
   }
 

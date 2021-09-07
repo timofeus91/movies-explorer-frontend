@@ -46,10 +46,13 @@ class MainApi {
     }
 
     //метод по изменению данных пользователя
-    updateInfo(data) {
+    updateInfo(data, jwt) {
         return fetch(`${this._url}users/me`, {
             method: 'PATCH',
-            headers: this._headers,
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${jwt}`,
+              },
             body: JSON.stringify({
                 email: data.email,
                 name: data.name,
@@ -58,17 +61,9 @@ class MainApi {
         .then(this._checkResponse);
     }
 
-    //метод по выдаче информации о действующем пользователе
-    getUserMe() {
-        return fetch(`${this._url}users/me`, {
-            method: 'GET',
-            headers: this._headers,
-        })
-        .then(this._checkResponse);
-    }
 
-    //метод по проверке токена
-    checkToken(jwt)  {
+    //метод по проверке токена при авторизации 
+    checkTokenGetUser(jwt)  {
         return fetch(`${this._url}users/me`, {
           method: 'GET',
           headers: {
@@ -81,19 +76,27 @@ class MainApi {
 
 
       //метод по получению списка фильмов
-      getMovies() {
+      getMovies(jwt) {
           return fetch(`${this._url}movies`, {
               method: 'GET',
-              headers: this._headers,
+              headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${jwt}`,
+              },
           })
           .then(this._checkResponse);
       }
 
+      
+
       //метод по добавлению фильма
-      createMovie(data) {
+      createMovie(data, jwt) {
           return fetch(`${this._url}movies`, {
               method: 'POST',
-              headers: this._headers,
+              headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${jwt}`,
+              },
               body: JSON.stringify({
                   country: data.country,
                   director: data.director,
@@ -112,10 +115,13 @@ class MainApi {
       }
 
       //метод по удалению фильма
-      deleteMovie(movieId) {
+      deleteMovie(movieId, jwt) {
           return fetch(`${this._url}movies/${movieId}/`, {
               method: 'DELETE',
-              headers: this._headers,
+              headers: {
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${jwt}`,
+              },
           })
           .then(this._checkResponse);
       }

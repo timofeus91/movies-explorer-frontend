@@ -27,7 +27,7 @@ function MoviesCard({
     image,
     owner,
   } = movie;
-  console.log(movie);
+  
 
   //константа по сравнению айди пользователя кто сохранил фильм с айди пользователя в данный момент 
   const isLiked = owner === currentUser._id;
