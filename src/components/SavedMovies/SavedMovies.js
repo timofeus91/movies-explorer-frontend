@@ -1,14 +1,32 @@
 import React from "react";
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import Preloader from "../Preloader/Preloader";
 import SearchForm from "../SearchForm/SearchForm";
 import './SavedMovies.css';
 
-function SavedMovies() {
+function SavedMovies({loggedIn, onQuery, shortFilm, moviesCards, handleDelete, isPreloader, moviesError}) {
     return (
       <>
-        <SearchForm />
+        <Header
+          loggedIn={loggedIn}
+          filmRoute={false} 
+        />
+        <SearchForm 
+        onQuery={onQuery}
+        shortFilm={shortFilm} 
+        
+        />
+        <Preloader
+        isPreloader={isPreloader}
+        />
         <MoviesCardList
-        routeMovies={false}  />
+          moviesCards={moviesCards}
+          handleDelete={handleDelete}
+          moviesError={moviesError}
+          />
+        <Footer />
       </>
     );
 }

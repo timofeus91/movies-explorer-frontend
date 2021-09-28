@@ -6,6 +6,22 @@
     border-top:  2px solid rgb(232, 232, 232);
 }
 
+.movies__error {
+    padding: 0;
+    margin: 0 auto 0;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 27px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+
+}
+
+.movies__error_disabled {
+    display: none;
+}
+
 .movies__list {
     padding: 0;
     margin: 0 auto 0;
@@ -31,6 +47,10 @@
     font-size: 12px;
     line-height: 15px;
     color: rgb(0, 0, 0);
+}
+
+.movies__button_disabled {
+    display: none;
 }
 
 @media screen and (max-width:1200px) {

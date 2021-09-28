@@ -110,6 +110,11 @@
 
 }
 
+.login__bitton_disabled {
+    cursor: default;
+    opacity: 0.7;
+}
+
 .login__subtitle {
     margin: 16px auto 0;
     padding: 0;
