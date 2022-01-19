@@ -3,12 +3,9 @@
 
 Используемые технологии: JavaScript, React, JSX, CSS, API. 
 
-Фронт проекта находится по [ссылке](https://diplom.timofeus91.nomoredomains.club/) : https://diplom.timofeus91.nomoredomains.club/
-
-Бэк проекта находится по [ссылке](https://api.diplom.timofeus91.nomoredomains.club/) : https://api.diplom.timofeus91.nomoredomains.club/
+Бэк проекта находится по [ссылке](https://github.com/timofeus91/movies-explorer-api) : https://github.com/timofeus91/movies-explorer-api/
 
 Для запуска на локальном сервере с hot reloaded необходимо использовать команду `npm run start`
-
 
 Буду рад любым отзывам на данную работу от любого пользователя. Свои отзывы можете писать на почту timofeus91@gmail.com либо в телеграмм @timofeus91
 
@@ -18,8 +15,7 @@
 
 Technology stack at work : JavaScript, React, JSX, CSS, API.
 
-The front of the project is at the [link](https://diplom.timofeus91.nomoredomains.club/) : https://diplom.timofeus91.nomoredomains.club/
-The backend of the project is at the [link](https://api.diplom.timofeus91.nomoredomains.club/) : https://api.diplom.timofeus91.nomoredomains.club/
+The backend of the project is at the [link](https://github.com/timofeus91/movies-explorer-api) : https://github.com/timofeus91/movies-explorer-api
 
 To run on a local server with hot reloaded, you need use the command `npm run start`
 

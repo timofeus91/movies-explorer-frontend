@@ -25,7 +25,7 @@ class MainApi {
             headers: this._headers,
             body: JSON.stringify({
                 name: data.name,
-                email: data.email, 
+                email: data.email,
                 password: data.password
             }),
         })
@@ -38,7 +38,7 @@ class MainApi {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
-                email: data.email, 
+                email: data.email,
                 password: data.password
             }),
         })
@@ -62,7 +62,7 @@ class MainApi {
     }
 
 
-    //метод по проверке токена при авторизации 
+    //метод по проверке токена при авторизации
     checkTokenGetUser(jwt)  {
         return fetch(`${this._url}users/me`, {
           method: 'GET',
@@ -87,7 +87,7 @@ class MainApi {
           .then(this._checkResponse);
       }
 
-      
+
 
       //метод по добавлению фильма
       createMovie(data, jwt) {
@@ -129,13 +129,13 @@ class MainApi {
 
 }
 
-//В версии которая задеплоина указывается url https://api.diplom.timofeus91.nomoredomains.club/ При работе на локальном сервере сменить на http://localhost:3005/
+
 const mainApi = new MainApi({
-    url: "https://api.diplom.timofeus91.nomoredomains.club/", 
+    url: "http://localhost:3005/",
     headers: {
         "content-type": "application/json",
         'authorization': `Bearer ${localStorage.getItem('jwt')}`,
-        
+
     }
 });
 
